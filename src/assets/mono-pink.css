@@ -326,6 +326,7 @@
   .android-link {
     text-decoration: none;
     color: #442c2e !important;
+    cursor: pointer;
   }
   
     .android-link:hover {

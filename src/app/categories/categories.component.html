@@ -1,0 +1,10 @@
+
+<h3>From Categories Component .html</h3>
+<h6>LIST OF CATEGORIES</h6>
+<table>
+    <tr *ngFor="let category of categoryList">
+      <td>
+          <a class="android-link" (click)="viewDetails(category)">{{category.Id}} - {{category.Name}}</a>
+      </td>
+    </tr>
+</table>
