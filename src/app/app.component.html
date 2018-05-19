@@ -3,7 +3,7 @@
     <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
       <div class="mdl-layout__header-row">
         <!-- <span class="android-title mdl-layout-title">
-          <img class="android-logo-image" src="images/android-logo.png">
+          <img class="android-logo-image" src="images/logo.png">
         </span> -->
         <span class="mdl-layout-title">Reading Diary</span>
         <!-- Add spacer, to align navigation to the right in desktop -->
@@ -20,7 +20,7 @@
 
     <div class="android-drawer mdl-layout__drawer">
       <span class="mdl-layout-title">
-        <img class="android-logo-image" src="assets/images/f21-sample-logo.png">
+        <img class="android-logo-image" src="assets/images/black-logo.png">
       </span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link current-tab" href="">Dashboard</a>
@@ -36,65 +36,8 @@
         <div class="android-section-title mdl-typography--display-1-color-contrast">
           Welcome, {{ username }}!
         </div>
-        <!-- <app-root></app-root> -->
-        <!-- START SECTION FOR CONTENT -->
-        <div class="android-card-container mdl-grid">
-          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-              <img src="assets/images/more-from-1.png">
-            </div>
-            <div class="mdl-card__title">
-               <h4 class="mdl-card__title-text">Get going on Android</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to Android quick and easy</span>
-            </div>
-            <div class="mdl-card__actions">
-               <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                 Make the switch
-                 <i class="material-icons">chevron_right</i>
-               </a>
-            </div>
-          </div>
-
-          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-              <img src="assets/images/more-from-4.png">
-            </div>
-            <div class="mdl-card__title">
-               <h4 class="mdl-card__title-text">Create your own Android character</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <span class="mdl-typography--font-light mdl-typography--subhead">Turn the little green Android mascot into you, your friends, anyone!</span>
-            </div>
-            <div class="mdl-card__actions">
-               <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                 androidify.com
-                 <i class="material-icons">chevron_right</i>
-               </a>
-            </div>
-          </div>
-
-          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-              <img src="assets/images/more-from-2.png">
-            </div>
-            <div class="mdl-card__title">
-               <h4 class="mdl-card__title-text">Get a clean customisable home screen</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <span class="mdl-typography--font-light mdl-typography--subhead">A clean, simple, customisable home screen that comes with the power of Google Now: Traffic alerts, weather and much more, just a swipe away.</span>
-            </div>
-            <div class="mdl-card__actions">
-               <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                 Download now
-                 <i class="material-icons">chevron_right</i>
-               </a>
-            </div>
-          </div>
-        </div>
-        <!-- END SECTION FOR CONTENT -->
-
+        <app-dashboard></app-dashboard>
+        <!-- <app-readings></app-readings> -->
       </div>
       <footer class="android-footer mdl-mega-footer">
         <div class="mdl-mega-footer--bottom-section">
