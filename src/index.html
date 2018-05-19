@@ -2,13 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ReadingDiary</title>
+  <title>Reading Diary</title>
   <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!--ADDITIONAL META-->
+  <meta name="description" content="A reading logger app for bookworms.">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--ADDITIONAL STYLES-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <link href="./assets/mdl/material.css" rel="stylesheet"> 
+  <link href="./assets/mono-pink.css" rel="stylesheet">
+
 </head>
 <body>
-  <app-root></app-root>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
+        <div class="mdl-layout__header-row">
+          <!-- <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png">
+          </span> -->
+          <span class="mdl-layout-title">Reading Diary</span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="android-header-spacer mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <div class="android-navigation-container">
+            <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link" href="">Dashboard</a>
+              <a class="mdl-navigation__link" href="">Readings</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="android-drawer mdl-layout__drawer">
+        <span class="mdl-layout-title">
+          <img class="android-logo-image" src="assets/images/f21-sample-logo.png">
+        </span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link current-tab" href="">Dashboard</a>
+          <a class="mdl-navigation__link" href="">Readings</a>
+          <!-- <div class="android-drawer-separator"></div> -->
+          <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span>
+        </nav>
+      </div>
+
+      <div class="android-content mdl-layout__content">
+        <!-- <a name="top"></a> -->
+        <div class="android-more-section">
+          <div class="android-section-title mdl-typography--display-1-color-contrast">
+            Welcome, Jane!
+          </div>
+          <app-root></app-root>
+          <!-- START SECTION FOR CONTENT -->
+          <div class="android-card-container mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              <div class="mdl-card__media">
+                <img src="assets/images/more-from-1.png">
+              </div>
+              <div class="mdl-card__title">
+                 <h4 class="mdl-card__title-text">Get going on Android</h4>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to Android quick and easy</span>
+              </div>
+              <div class="mdl-card__actions">
+                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+                   Make the switch
+                   <i class="material-icons">chevron_right</i>
+                 </a>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              <div class="mdl-card__media">
+                <img src="assets/images/more-from-4.png">
+              </div>
+              <div class="mdl-card__title">
+                 <h4 class="mdl-card__title-text">Create your own Android character</h4>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">Turn the little green Android mascot into you, your friends, anyone!</span>
+              </div>
+              <div class="mdl-card__actions">
+                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+                   androidify.com
+                   <i class="material-icons">chevron_right</i>
+                 </a>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              <div class="mdl-card__media">
+                <img src="assets/images/more-from-2.png">
+              </div>
+              <div class="mdl-card__title">
+                 <h4 class="mdl-card__title-text">Get a clean customisable home screen</h4>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">A clean, simple, customisable home screen that comes with the power of Google Now: Traffic alerts, weather and much more, just a swipe away.</span>
+              </div>
+              <div class="mdl-card__actions">
+                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+                   Download now
+                   <i class="material-icons">chevron_right</i>
+                 </a>
+              </div>
+            </div>
+          </div>
+          <!-- END SECTION FOR CONTENT -->
+
+        
+
+        </div>
+        <footer class="android-footer mdl-mega-footer">
+          <div class="mdl-mega-footer--bottom-section">
+            <!-- <a class="android-link mdl-typography--font-light" href="">Blog</a>
+            <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a> -->
+            <span class="footer-copyright">Copyright 2018.</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script defer src="./assets/mdl/material.js" type="text/javascript"></script>
 </body>
 </html>
