@@ -11,8 +11,8 @@
         <!-- Navigation -->
         <div class="android-navigation-container">
           <nav class="android-navigation mdl-navigation">
-            <a class="mdl-navigation__link" href="">Dashboard</a>
-            <a class="mdl-navigation__link" href="">Readings</a>
+            <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
+            <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
           </nav>
         </div>
       </div>
@@ -23,8 +23,8 @@
         <img class="android-logo-image" src="assets/images/black-logo.png">
       </span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link current-tab" href="">Dashboard</a>
-        <a class="mdl-navigation__link" href="">Readings</a>
+        <a class="mdl-navigation__link current-tab" routerLink="/dashboard">Dashboard</a>
+        <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
         <!-- <div class="android-drawer-separator"></div> -->
         <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span>
       </nav>
@@ -36,9 +36,10 @@
         <div class="android-section-title mdl-typography--display-1-color-contrast">
           Welcome, {{ username }}!
         </div>
-        <app-dashboard></app-dashboard>
+        <router-outlet></router-outlet>
+        <!-- <app-dashboard></app-dashboard>
         <app-categories></app-categories>
-        <!-- <app-readings></app-readings> -->
+        <app-readings></app-readings> -->
       </div>
       <footer class="android-footer mdl-mega-footer">
         <div class="mdl-mega-footer--bottom-section">
