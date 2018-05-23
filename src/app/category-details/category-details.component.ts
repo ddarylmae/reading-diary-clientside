@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Category } from '../shared/category.model';
+import { CategoryService } from '../shared/category.service';
 
 @Component({
   selector: 'app-category-details',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryDetailsComponent implements OnInit {
 
-  constructor() { }
+  catInfo: Category;
+
+  constructor(
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
+    this.getCategory();
   }
+
+  getCategory(): void {
+    const id = +this.route.snapshot.paramMap.get('Id');
+    this.categoryService.getCategoryDetails(id).subscribe(c => this.catInfo = c);
+  }
+
 
 }
