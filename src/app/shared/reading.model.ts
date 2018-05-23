@@ -1,4 +1,4 @@
-export class Category {
+export class Reading {
     Id: number;
     Title: string;
     Author: string;
