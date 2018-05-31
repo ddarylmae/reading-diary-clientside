@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../shared/category.model';
 
 @Component({
   selector: 'app-readings',

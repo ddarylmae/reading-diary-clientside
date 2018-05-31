@@ -30,6 +30,14 @@ export class CategoryService {
       );
   }
 
+  getCategoryDetails(id: number): Observable<Category> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Category>(url).pipe(
+      tap(_ => this.log(`Retrieved categoryId=${id}`)),
+      catchError(this.handleError<Category>(`getCategoryDetails id=${id}`))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
