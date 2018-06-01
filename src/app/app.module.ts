@@ -10,7 +10,8 @@ import { CategoryService } from './shared/category.service';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
-
+import { ReadingDetailsComponent } from './reading-details/reading-details.component';
+import { ReadingService } from './shared/reading.service';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { MessageService } from './shared/message.service';
     ReadingsComponent,
     CategoriesComponent,
     CategoryDetailsComponent,
+    ReadingDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ CategoryService, MessageService],
+  providers: [ CategoryService, MessageService, ReadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

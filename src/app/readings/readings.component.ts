@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../shared/category.model';
+import { Reading } from '../shared/reading.model';
+import { ReadingService } from '../shared/reading.service';
 
 @Component({
   selector: 'app-readings',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReadingsComponent implements OnInit {
 
-  constructor() { }
+  readingList: Reading[];
+
+  constructor(
+    private readingService: ReadingService
+  ) { }
 
   ngOnInit() {
+    this.getReadings();
+  }
+
+  getReadings(): void {
+    this.readingService.getAllReadings().subscribe(readings => this.readingList = readings);
+
   }
 
 }

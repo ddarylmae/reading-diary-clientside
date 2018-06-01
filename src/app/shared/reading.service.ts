@@ -3,15 +3,15 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpRequest } from '@angular/com
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { Category } from './category.model';
+import { Reading } from './reading.model';
 import { MessageService } from './message.service';
 
 
 @Injectable()
-export class CategoryService {
+export class ReadingService {
 
-  private apiUrl = 'http://localhost:51956/api/categories/';
-  categoryList: Category[];
+  private apiUrl = 'http://localhost:51956/api/reading/';
+  readingList: Reading[];
 
   constructor(
     private http: HttpClient,
@@ -19,22 +19,22 @@ export class CategoryService {
   ) { }
 
   /**
-   * Gets list of categories from Web API
+   * Gets list of readings from Web API
    */
-  getAllCategories(): Observable<Category[]> {
+  getAllReadings(): Observable<Reading[]> {
     this.messageService.add('MaterialService: Retrieved materials');
-    return this.http.get<Category[]>(this.apiUrl)
+    return this.http.get<Reading[]>(this.apiUrl)
       .pipe(
-        tap(categories => this.log(`Retrieved categories`)),
-        catchError(this.handleError('getCategories', []))
+        tap(reading => this.log(`Retrieved readings`)),
+        catchError(this.handleError('getReadings', []))
       );
   }
 
-  getCategoryDetails(id: number): Observable<Category> {
+  getReadingDetails(id: number): Observable<Reading> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Category>(url).pipe(
-      tap(_ => this.log(`Retrieved categoryId=${id}`)),
-      catchError(this.handleError<Category>(`getCategoryDetails id=${id}`))
+    return this.http.get<Reading>(url).pipe(
+      tap(_ => this.log(`Retrieved readingId=${id}`)),
+      catchError(this.handleError<Reading>(`getReadingDetails id=${id}`))
     );
   }
 
