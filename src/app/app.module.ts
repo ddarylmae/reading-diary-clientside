@@ -16,7 +16,7 @@ import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,9 +35,11 @@ import { MatDialogModule } from '@angular/material';
     FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ],
-  providers: [ CategoryService, MessageService, UserService],
-  bootstrap: [AppComponent]
+  providers: [ CategoryService, MessageService, UserService ],
+  bootstrap: [ AppComponent] ,
+  entryComponents: [ CategoryDetailsComponent ]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@
 <table>
     <tr *ngFor="let category of categoryList">
       <td>
-          <a class="android-link" (click)="viewDetails(category)">{{category.Id}} - {{category.Name}}</a>
+          <a class="android-link" (click)="viewDetails(category.Id)">{{category.Id}} - {{category.Name}}</a>
           <!-- <a class="android-link" routerLink="/category-details/{{category.Id}}">{{category.Id}} - {{category.Name}}</a> -->
       </td>
     </tr>

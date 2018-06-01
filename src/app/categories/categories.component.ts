@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../shared/category.service';
 import { Category } from '../shared/category.model';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CategoryDetailsComponent } from '../category-details/category-details.component';
 
 @Component({
   selector: 'app-categories',
@@ -10,10 +12,13 @@ import { Category } from '../shared/category.model';
 })
 export class CategoriesComponent implements OnInit {
 
+  categoryDetailsRef: MatDialogRef<CategoryDetailsComponent>;
+
   categoryList: Category[];
 
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -24,8 +29,16 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(categories => this.categoryList = categories);
   }
 
-  viewDetails(category: Category): void {
-    confirm('All details: ' + category.Id + ', ' + category.Name + ', ' + category.Description);
+  viewDetails(id: number): void {
+    // confirm('All details: ' + category.Id + ', ' + category.Name + ', ' + category.Description);
+    this.categoryDetailsRef = this.dialog.open(CategoryDetailsComponent, {
+      hasBackdrop: false,
+      height: '400px',
+      width: '600px',
+      data: {
+        catId: id
+      }
+    });
   }
 
 }
