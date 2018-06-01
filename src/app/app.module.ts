@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -11,7 +14,8 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
-
+import { RegistrationComponent } from './registration/registration.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -21,13 +25,17 @@ import { ReadingDetailsComponent } from './reading-details/reading-details.compo
     CategoriesComponent,
     CategoryDetailsComponent,
     ReadingDetailsComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
-  providers: [ CategoryService, MessageService],
+  providers: [ CategoryService, MessageService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

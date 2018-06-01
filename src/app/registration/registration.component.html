@@ -1,0 +1,40 @@
+
+<form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="username" #Username="ngModel" [(ngModel)]="user.Username" pattern="[a-z0-9._-]*">
+    <label class="mdl-textfield__label">Username</label>
+    <span class="mdl-textfield__error">Valid characters only</span>
+  </div>
+  <div ngModelGroup="password">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="pwd"  #Password="ngModel" [(ngModel)]="user.Password[pwd]" minlength="4">
+      <label class="mdl-textfield__label" [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum of 4 characters needed'):''">Password</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="confirmPwd"  #ConfirmPass="ngModel" [(ngModel)]="user.Password[confirmPwd]">
+      <label class="mdl-textfield__label">Confirm Password</label>
+    </div>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="email" #Email="ngModel" [(ngModel)]="user.Email" [pattern]="emailpattern">
+    <label class="mdl-textfield__label">Email</label>
+    <span class="mdl-textfield__error">Not a valid email address</span>
+  </div>
+  <div ngModelGroup="names">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="firstname" #Firstname="ngModel" [(ngModel)]="user.Firstname" pattern="[A-Z,a-z, ]*">
+      <label class="mdl-textfield__label">First name</label>
+      <span class="mdl-textfield__error">Letters and spaces only</span>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="lastname" #Lastname="ngModel" [(ngModel)]="user.Lastname" pattern="[A-Z,a-z, ]*">
+      <label class="mdl-textfield__label">Last name</label>
+      <span class="mdl-textfield__error">Letters and spaces only</span>
+    </div>
+  </div>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [disabled]="!registrationForm.form.valid">
+    Submit
+  </button>
+</form>
+<!-- {{registrationForm.value | json}}
+{{user | json}} -->
