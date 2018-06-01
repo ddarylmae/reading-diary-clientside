@@ -16,6 +16,7 @@ import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserService } from './shared/user.service';
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [ CategoryService, MessageService, UserService],
   bootstrap: [AppComponent]
