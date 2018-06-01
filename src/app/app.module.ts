@@ -11,7 +11,7 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
-
+import { ReadingService } from './shared/reading.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { ReadingDetailsComponent } from './reading-details/reading-details.compo
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ CategoryService, MessageService],
+  providers: [ CategoryService, MessageService, ReadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
