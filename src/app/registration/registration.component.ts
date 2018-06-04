@@ -96,20 +96,20 @@ export class RegistrationComponent implements OnInit {
     //   console.log('SUCCESSFUL REGISTRATION');
     //   }, error => { console.log('Error Messages: ' + data.Errors[0]);
     // });
-    // this.userService.registerUser(this.user).subscribe(
-    //   result => {
-    //     // Handle result
-    //     console.log('handle result');
-    //   },
-    //   error => {
-    //     console.log('handle error: ' + error);
-    //   },
-    //   () => {
-    //     // 'onCompleted' callback.
-    //     // No errors, route to new page here
-    //     console.log('SUCCESSFUL result');
-    //   }
-    // );
+    this.userService.registerUser(this.user).subscribe(
+      result => {
+        // Handle result
+        console.log('handle result');
+      },
+      error => {
+        console.log('handle error: ' + error);
+      },
+      () => {
+        // 'onCompleted' callback.
+        // No errors, route to new page here
+        console.log('SUCCESSFUL result');
+      }
+    );
   }
 
 }
