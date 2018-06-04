@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,7 +16,13 @@ import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatDialogModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule,
+  MatIconModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,10 +39,15 @@ import { MatDialogModule, MatButtonModule } from '@angular/material';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [ CategoryService, MessageService, UserService ],
   bootstrap: [ AppComponent] ,
