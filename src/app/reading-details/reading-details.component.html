@@ -1,3 +1,49 @@
-<p>
-  reading-details works!
-</p>
+<div mat-dialog-title>
+  <span>Reading Details</span>
+  <button style="float:right" mat-button mat-dialog-close><i class="material-icons">clear</i></button>
+ </div>
+<mat-dialog-content>
+  <p>
+    <b>Title:</b>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="" value="{{ reading?.Title }}">
+      </mat-form-field>
+      
+  <br><b>Author:</b> {{ reading?.Author }}
+  <br><span><b>Rating:</b>{{ reading.Rating }} <pm-star [rating]='reading.Rating'></pm-star></span>
+    <br><b>Link:</b> {{ reading?.Link }}
+  <br><b>Category:</b> {{ category?.Name }}
+  <br><b>Summary:</b> {{ reading?.Summary }}
+  <br><b>DateRead:</b> {{ reading?.DateRead }}
+  <br><b>Favorite:</b> {{ reading?.Favorite }}</p>
+  <!--<p>{{ reading?.Description }}</p>-->
+<!--
+  <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Favorite food" value="Sushi">
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+    </form>
+-->
+<!--
+<mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value"/>
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+-->
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-raised-button class="mat-raised-button mat-primary" 
+    color="primary">
+      <i class="material-icons">mode_edit</i> Edit
+    </button>
+    <button mat-button mat-raised-button class="mat-raised-button mat-accent"color="accent" >
+      <i class="material-icons">delete_sweep</i> Delete
+    </button>  
+</mat-dialog-actions>
+

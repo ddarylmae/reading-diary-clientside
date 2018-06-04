@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Reading } from '../shared/reading.model';
+import { ReadingService } from '../shared/reading.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { CategoryService } from '../shared/category.service';
+import { Category } from '../shared/category.model';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-reading-details',
   templateUrl: './reading-details.component.html',
   styleUrls: ['./reading-details.component.css']
 })
+
 export class ReadingDetailsComponent implements OnInit {
 
-  constructor() { }
+  reading: Reading;
+  category: Category;
+  
+  constructor( 
+    private readingService: ReadingService,
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) private data
+  ) { }
 
   ngOnInit() {
+    this.getReading();
+    this.getCategory();
+  }
+
+  getReading(): void {
+    // const id = +this.route.snapshot.paramMap.get('Id');
+    this.reading = this.data.reading;
+    //console.log('CATEGORY ID ' + id);
+    //this.categoryService.getCategoryDetails(id).subscribe(c => this.catInfo = c);
+  }
+
+  getCategory(): void {
+    const id = this.reading.Category;
+    console.log('CATEGORY ID ' + id);
+    this.categoryService.getCategoryDetails(id).subscribe(c => this.category = c);
   }
 
 }
