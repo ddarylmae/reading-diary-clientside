@@ -1,3 +1,10 @@
-<p>
-  Details: {{ infoDetails }}
-</p>
+<h1 mat-dialog-title>Category Details</h1>
+<mat-dialog-content>
+  <p>{{ catInfo?.Id }}</p>
+  <p>{{ catInfo?.Name }}</p>
+  <p>{{ catInfo?.Description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
