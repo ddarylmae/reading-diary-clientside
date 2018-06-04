@@ -24,6 +24,7 @@ import { MatDialogModule,
   MatCardModule,
   MatIconModule
 } from '@angular/material';
+import { StarComponent } from './shared/star.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatDialogModule,
     CategoriesComponent,
     CategoryDetailsComponent,
     ReadingDetailsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    StarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,6 @@ import { MatDialogModule,
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService ],
   bootstrap: [ AppComponent] ,
-  entryComponents: [ CategoryDetailsComponent ]
+  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]
 })
 export class AppModule { }
