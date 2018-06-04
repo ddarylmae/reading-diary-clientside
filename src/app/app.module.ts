@@ -16,6 +16,7 @@ import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
+import { ReadingService } from './shared/reading.service';
 import { MatDialogModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -49,7 +50,7 @@ import { MatDialogModule,
     MatCardModule,
     MatIconModule
   ],
-  providers: [ CategoryService, MessageService, UserService ],
+  providers: [ CategoryService, MessageService, UserService, ReadingService ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent ]
 })

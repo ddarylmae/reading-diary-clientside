@@ -1,1 +1,15 @@
-<h3>From Readings Component .html</h3>
+<!— Three Line List with secondary info and action —>
+<style>
+    .demo-list-three {
+      width: 650px;
+    }
+    </style>
+
+    <ul class="demo-list-three mdl-list">
+      <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">
+
+        <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
+       
+        
+      </li>
+    </ul>

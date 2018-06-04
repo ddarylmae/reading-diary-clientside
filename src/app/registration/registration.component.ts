@@ -91,11 +91,11 @@ export class RegistrationComponent implements OnInit {
     //     this.toastrService.success('New reading added!');
     //   }
     // );
-    this.userService.registerUser(this.user).subscribe((data) => {
-      this.toastrService.success('Successfully registered');
-      console.log('SUCCESSFUL REGISTRATION');
-      }, error => { console.log('Error Messages: ' + data.Errors[0]);
-    });
+    // this.userService.registerUser(this.user).subscribe((data) => {
+    //   this.toastrService.success('Successfully registered');
+    //   console.log('SUCCESSFUL REGISTRATION');
+    //   }, error => { console.log('Error Messages: ' + data.Errors[0]);
+    // });
     // this.userService.registerUser(this.user).subscribe(
     //   result => {
     //     // Handle result
