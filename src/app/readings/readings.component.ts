@@ -11,10 +11,30 @@ import { ReadingService } from '../shared/reading.service';
 export class ReadingsComponent implements OnInit {
 
   readingList: Reading[];
+  // reading: Reading;
+  
+  _listFilter: string;
+  get listFilter(): string {
+      return this._listFilter;
+  }
+  set listFilter(value: string) {
+      this._listFilter = value;
+      if(this.listFilter){ 
+        this.readingList = this.performFilter(this.listFilter);
+       }else{
+        this.getReadings();
+       }
+  }
 
   constructor(
     private readingService: ReadingService
   ) { }
+
+  performFilter(filterBy: string): Reading[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.readingList.filter((reading: Reading) =>
+          reading.Title.toLocaleLowerCase().indexOf(filterBy) !== -1 );
+}
 
   ngOnInit() {
     this.getReadings();
@@ -25,4 +45,6 @@ export class ReadingsComponent implements OnInit {
 
   }
 
+  pageTitle: string = 'Reading List';
+  
 }

@@ -14,9 +14,6 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
-<<<<<<< HEAD
-import { ReadingService } from './shared/reading.service';
-=======
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
 import { ReadingService } from './shared/reading.service';
@@ -27,7 +24,6 @@ import { MatDialogModule,
   MatCardModule,
   MatIconModule
 } from '@angular/material';
->>>>>>> adba9bd352dc34ec9eff14f5610840c16ee9c34d
 
 @NgModule({
   declarations: [
@@ -54,13 +50,8 @@ import { MatDialogModule,
     MatCardModule,
     MatIconModule
   ],
-<<<<<<< HEAD
-  providers: [ CategoryService, MessageService, ReadingService],
-  bootstrap: [AppComponent]
-=======
   providers: [ CategoryService, MessageService, UserService, ReadingService ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent ]
->>>>>>> adba9bd352dc34ec9eff14f5610840c16ee9c34d
 })
 export class AppModule { }
