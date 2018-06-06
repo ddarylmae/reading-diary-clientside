@@ -2,47 +2,53 @@
   <span>Reading Details</span>
   <button style="float:right" mat-button mat-dialog-close><i class="material-icons">clear</i></button>
  </div>
+
 <mat-dialog-content>
-  <p>
+  <div>
     <b>Title:</b>
+    <mat-form-field>   
+      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Title' value="{{ reading?.Title }}">  
+    </mat-form-field>    
+    <br>
+    <b>Author:</b> 
+      <mat-form-field>
+      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Author' value="{{ reading?.Author }}">  
+    </mat-form-field>    
+    <br>
+    <div id="rating">
+      <b>Rating:</b>
+      <pm-star (ratingUpdated)="updateRating($event)" 
+      [rating]='reading.Rating'></pm-star>
+    </div>
+    <b>Link:</b>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="" value="{{ reading?.Title }}">
-      </mat-form-field>
-      
-  <br><b>Author:</b> {{ reading?.Author }}
-  <br><span><b>Rating:</b>{{ reading.Rating }} <pm-star [rating]='reading.Rating'></pm-star></span>
-    <br><b>Link:</b> {{ reading?.Link }}
-  <br><b>Category:</b> {{ category?.Name }}
-  <br><b>Summary:</b> {{ reading?.Summary }}
-  <br><b>DateRead:</b> {{ reading?.DateRead }}
-  <br><b>Favorite:</b> {{ reading?.Favorite }}</p>
-  <!--<p>{{ reading?.Description }}</p>-->
-<!--
-  <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Favorite food" value="Sushi">
-      </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Leave a comment"></textarea>
-      </mat-form-field>
-    </form>
--->
-<!--
-<mat-form-field class="example-form-field">
-    <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value"/>
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
--->
+      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Link' value="{{ reading?.Link }}">
+    </mat-form-field>
+    <br>
+    <b>Category:</b>
+    <mat-form-field class="example-full-width">
+      <!--input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'categoryName' value="{{ categoryName }}"-->
+      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Category' value="{{ reading.Category }}">
+    </mat-form-field>
+    <br>
+    <b>Summary:</b>
+    <mat-form-field class="example-full-width">
+      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Summary' value="{{ reading?.Summary }}">
+    </mat-form-field>
+    <br>
+    <b>DateRead:</b>
+    {{ reading?.DateRead }}
+    <br>
+    <b>Favorite:</b> {{ reading?.Favorite }}</div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
     <button mat-button mat-raised-button class="mat-raised-button mat-primary" 
-    color="primary">
-      <i class="material-icons">mode_edit</i> Edit
+    color="primary" (click)="enableEditSaveMode()">
+      <i class="material-icons">mode_edit</i> {{isEditButton ? 'Edit' : 'Save'}}
     </button>
-    <button mat-button mat-raised-button class="mat-raised-button mat-accent"color="accent" >
+    <button mat-button mat-raised-button class="mat-raised-button mat-accent"
+    color="accent" (click)="deleteReading()" >
       <i class="material-icons">delete_sweep</i> Delete
     </button>  
 </mat-dialog-actions>

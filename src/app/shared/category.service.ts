@@ -10,7 +10,7 @@ import { MessageService } from './message.service';
 @Injectable()
 export class CategoryService {
 
-  private apiUrl = 'http://localhost:51956/api/categories/';
+  private apiUrl = 'http://localhost:51956/api/categories';
   categoryList: Category[];
 
   constructor(
