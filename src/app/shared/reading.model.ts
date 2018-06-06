@@ -9,4 +9,5 @@ export class Reading {
     Category: number;
     Favorite: number;
     UserId: number;
+    Deleted: number;
 }

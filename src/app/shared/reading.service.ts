@@ -6,12 +6,17 @@ import { of } from 'rxjs/observable/of';
 import { Reading } from './reading.model';
 import { MessageService } from './message.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 
 @Injectable()
 export class ReadingService {
 
   private apiUrl = 'http://localhost:51956/api/reading/';
   readingList: Reading[];
+  currentReading: Reading;
 
   constructor(
     private http: HttpClient,
@@ -54,12 +59,40 @@ export class ReadingService {
       return of(result as T);
     };
   }
-
   /**
    * Log a MaterialService message with MessageService
    */
   private log(message: string) {
     this.messageService.add('MaterialService: ' + message);
   }
+
+  updateReading(reading: Reading): Observable<void> {
+    // const url = `${this.apiUrl}/${reading.Id}`;
+    const url = this.apiUrl + '' + reading.Id;
+  
+    console.log('object');
+    console.log(reading);
+  //  this.currentReading.Id=reading.Id;
+    return this.http.put<void>(url, reading, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+  
+  deleteReading(reading: Reading): Observable<void> {
+    // const url = `${this.apiUrl}/${reading.Id}`;
+    const url = this.apiUrl + '' + reading.Id;
+  
+    console.log('object');
+    console.log(reading);
+  //  this.currentReading.Id=reading.Id;
+    return this.http.delete<void>(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
 
 }
