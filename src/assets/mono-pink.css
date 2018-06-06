@@ -158,6 +158,11 @@
       color: #fff;
       background-color: #442c2e;
     }
+
+    .mdl-layout__drawer .mdl-navigation .current {
+      color: #fff;
+      background-color: #442c2e;
+    }
   
     .mdl-layout__drawer .mdl-navigation {
       padding-top: 30px;

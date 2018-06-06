@@ -13,6 +13,7 @@ import { CategoryService } from './shared/category.service';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
+import { ScriptService } from './shared/script.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
@@ -54,7 +55,7 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatIconModule
   ],
-  providers: [ CategoryService, MessageService, UserService, ReadingService ],
+  providers: [ CategoryService, MessageService, UserService, ReadingService, ScriptService ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]
 })
