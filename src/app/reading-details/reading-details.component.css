@@ -1,0 +1,16 @@
+mat-form-field {
+    font-size: 12sp;
+    /* margin-top: 10px; */
+    height: 20px;
+    border-top: 2px;
+    width: 80%;
+  }
+#rating {
+  font-size: 12sp;
+  margin-top: 14px; 
+  height: 20px;
+}
+mat-input-infix div {
+    padding-top: 0px;
+    border-top: 0px;
+}

@@ -69,4 +69,12 @@
     left: 265px;
   }
 
-  ::ng-deep
+  button{
+    height: 20px;
+    width: 25px;
+    line-height: 20px;
+}
+mat-icon {
+  font-size: 12sp;
+  height: 20px;
+}
