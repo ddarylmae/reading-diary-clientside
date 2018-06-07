@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReadingsComponent } from './readings/readings.component';
@@ -17,7 +16,11 @@ import { ScriptService } from './shared/script.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
+import { AuthService } from './shared/auth.service';
 import { ReadingService } from './shared/reading.service';
+import { JWTInterceptor } from './app.interceptor';
+import { TokenStorage } from './token.storage';
+import { RouteGuard } from './route-guard';
 import { MatDialogModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -55,7 +58,9 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatIconModule
   ],
-  providers: [ CategoryService, MessageService, UserService, ReadingService, ScriptService ],
+  providers: [ CategoryService, MessageService, UserService, ReadingService,
+    RouteGuard, TokenStorage, ScriptService, AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true } ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]
 })

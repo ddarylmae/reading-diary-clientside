@@ -25,6 +25,24 @@ export class UserService {
     );
   }
 
+  attemptAuth(username: string, password: string): Observable<any> {
+    const credentials = {Username: username, Password: password};
+    console.log('attempAuth ::');
+    return this.http.post(this.baseUrl + '/login', credentials);
+  }
+
+  isTokenExpired(token?: string): boolean {
+    // if (!token) {
+    //   token = this.getToken();
+    // }
+    // if (!token) {
+    //   return true;
+    // }
+    // const date = this.getTokenExpirationDate(token);
+    // return (date === undefined) ? false : !(date.valueOf() > new Date().valueOf());
+    return true;
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

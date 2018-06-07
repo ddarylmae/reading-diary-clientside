@@ -14,7 +14,7 @@
     <div class="android-more-section">
       <mat-card class="login-card">
         <mat-card-title>Login</mat-card-title>
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form">
+        <form #loginForm="ngForm" (ngSubmit)="loginUser()" class="login-form">
           <mat-form-field class="login-field">
             <input matInput placeholder="Username/Email" [formControl]="usernameFormCtrl" [errorStateMatcher]="matcher">
             <mat-error *ngIf="usernameFormCtrl.hasError('pattern') && !usernameFormCtrl.hasError('required')">
@@ -30,11 +30,12 @@
               Please enter your password
             </mat-error>
           </mat-form-field>
-        </form>
-        <button class="login-field" mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">
-          Submit
-        </button>
+          <button class="login-field" mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">
+            Submit
+          </button>
+        </form>        
       </mat-card>
+      <button mat-raised-button color="accent" (click)="logoutUser()">Logout</button>
     </div>
   </div>
 </div>
