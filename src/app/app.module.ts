@@ -17,6 +17,7 @@ import { ReadingDetailsComponent } from './reading-details/reading-details.compo
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
 import { ReadingService } from './shared/reading.service';
+import { AddReadingComponent } from './add-reading/add-reading.component';
 import { MatDialogModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -35,6 +36,7 @@ import { StarComponent } from './shared/star.component';
     CategoryDetailsComponent,
     ReadingDetailsComponent,
     RegistrationComponent,
+    AddReadingComponent,
     StarComponent
   ],
   imports: [
@@ -54,6 +56,6 @@ import { StarComponent } from './shared/star.component';
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService ],
   bootstrap: [ AppComponent] ,
-  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]
+  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, AddReadingComponent ]
 })
 export class AppModule { }

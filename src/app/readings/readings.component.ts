@@ -4,6 +4,7 @@ import { Reading } from '../shared/reading.model';
 import { ReadingService } from '../shared/reading.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ReadingDetailsComponent } from '../reading-details/reading-details.component';
+import { AddReadingComponent } from '../add-reading/add-reading.component';
 
 @Component({
   selector: 'app-readings',
@@ -28,6 +29,7 @@ export class ReadingsComponent implements OnInit {
        }
   }
   readingDetailsRef: MatDialogRef<ReadingDetailsComponent>;
+  addReadingRef: MatDialogRef<AddReadingComponent>;
 
   constructor(
     private readingService: ReadingService,
@@ -60,5 +62,15 @@ export class ReadingsComponent implements OnInit {
   }
 
   pageTitle: string = 'Reading List';
-  
+
+  addReading(): void{
+    this.addReadingRef = this.dialog.open(AddReadingComponent, {
+      hasBackdrop: false,
+      height: '400px',
+      width: '600px',
+      // data: {
+      //   reading: newReading
+      // }
+    });
+  }
 }
