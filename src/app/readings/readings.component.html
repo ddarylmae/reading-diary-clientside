@@ -26,3 +26,60 @@
         </mat-card>  
       </li>
     </ul>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
+    <div class="mdl-layout__header-row">
+      <!-- <span class="android-title mdl-layout-title">
+        <img class="android-logo-image" src="images/logo.png">
+      </span> -->
+      <span class="mdl-layout-title">Reading Diary</span>
+      <!-- Add spacer, to align navigation to the right in desktop -->
+      <div class="android-header-spacer mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <div class="android-navigation-container">
+        <nav class="android-navigation mdl-navigation">
+          <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
+          <a class="mdl-navigation__link current-tab" routerLink="/readings">Readings</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="android-drawer mdl-layout__drawer">
+    <span class="mdl-layout-title">
+      <img class="android-logo-image" src="assets/images/black-logo.png">
+    </span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
+      <a class="mdl-navigation__link current" routerLink="/readings">Readings</a>
+      <!-- <div class="android-drawer-separator"></div> -->
+      <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span>
+    </nav>
+  </div>
+  <div class="android-content mdl-layout__content">
+    <!-- START OF SPECIFIC SECTION -->
+    <div class="android-more-section">
+      <style>
+        .demo-list-three {
+          width: 650px;
+        }
+        </style>
+    
+        <ul class="demo-list-three mdl-list">
+          <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">
+    
+            <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
+           
+            
+          </li>
+        </ul>
+    </div>
+    <!-- END OF SPECIFIC SECTION -->
+    <footer class="android-footer mdl-mega-footer">
+      <div class="mdl-mega-footer--bottom-section">
+        <!-- <a class="android-link mdl-typography--font-light" href="">Blog</a>
+        <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a> -->
+        <span class="footer-copyright">Copyright 2018.</span>
+      </div>
+    </footer>
+  </div>
+</div>

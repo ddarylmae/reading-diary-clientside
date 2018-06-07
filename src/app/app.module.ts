@@ -13,6 +13,7 @@ import { CategoryService } from './shared/category.service';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './shared/message.service';
+import { ScriptService } from './shared/script.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
@@ -26,6 +27,7 @@ import { MatDialogModule,
   MatIconModule
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { StarComponent } from './shared/star.component';
     ReadingDetailsComponent,
     RegistrationComponent,
     AddReadingComponent,
-    StarComponent
+    StarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import { StarComponent } from './shared/star.component';
     MatCardModule,
     MatIconModule
   ],
-  providers: [ CategoryService, MessageService, UserService, ReadingService ],
+  providers: [ CategoryService, MessageService, UserService, ReadingService, ScriptService ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, AddReadingComponent ]
 })

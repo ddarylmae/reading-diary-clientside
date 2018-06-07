@@ -1,42 +1,9 @@
-<span class="crop"
-    [style.width.px]="starWidth"
-    [title]="rating">
-    <span style="width: 120px">
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-    </span>
-</span>
-
-<!--div id="reviewStars-input"
-    [style.width.px]="starWidth"
-    [title]="rating">
-    <span style="width: 120px">
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-        <span><i class="material-icons">star</i></span>
-    </span>
-</div-->
-
-<!--
-<div id="reviewStars-input">
-    <input id="star-4" type="radio" name="reviewStars"/>
-    <label title="gorgeous" for="star-4"></label>
-
-    <input id="star-3" type="radio" name="reviewStars"/>
-    <label title="good" for="star-3"></label>
-
-    <input id="star-2" type="radio" name="reviewStars"/>
-    <label title="regular" for="star-2"></label>
-
-    <input id="star-1" type="radio" name="reviewStars"/>
-    <label title="poor" for="star-1"></label>
-
-    <input id="star-0" type="radio" name="reviewStars"/>
-    <label title="bad" for="star-0"></label>
-</div>
--->
+<button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i"
+[id]="'star_'+i" (click)="onClick(i+1)">
+    <mat-icon id="starRating">
+        {{showIcon(i)}}
+    </mat-icon>
+</button>
+<mat-error *ngIf="starCount == null || starCount == 0">
+        Star count is <strong>required</strong> and cannot be zero
+</mat-error>
