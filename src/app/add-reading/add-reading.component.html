@@ -9,18 +9,15 @@
             <input matInput placeholder="" value="{{ reading?.Title }}">
         </mat-form-field>    
     <br><b>Author:</b> {{ reading?.Author }}
-    <br><span><b>Rating:</b>{{ reading.Rating }}<pm-star [rating]='reading.Rating'></pm-star></span>
+    <!-- <br><span><b>Rating:</b>{{ reading.Rating }}<pm-star [rating]='reading.Rating'></pm-star></span> -->
     <br><b>Link:</b> {{ reading?.Link }}
     <br><b>Category:</b> {{ category?.Name }}
     <br><b>Summary:</b> {{ reading?.Summary }}
     <br><b>DateRead:</b> {{ reading?.DateRead }}
-    <br><b>Favorite:</b> {{ reading?.Favorite }}</p>
+    <!-- <br><b>Favorite:</b> {{ reading?.Favorite }}</p> -->
 </mat-dialog-content>
 <mat-dialog-actions>
         <button mat-button mat-raised-button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save
             <i class="material-icons right">send</i>
         </button>
-    <!-- <button mat-button mat-raised-button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        <i _ngcontent-c17="" class="baseline-save icon-image-preview"></i>Save
-    </button> -->
 </mat-dialog-actions>

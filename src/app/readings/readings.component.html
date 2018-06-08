@@ -1,31 +1,3 @@
-<style>
-    .demo-list-three {
-      width: 650px;
-    }
-    </style>
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        {{pageTitle}}
-    </div>
-    <div class='panel-body'>
-        <div class='row'>
-            <div class='col-md-2'>Filter by:</div>
-            <div class='col-md-4'>
-                <input type='text' [(ngModel)]='listFilter' />
-            </div>
-        </div>
-        <div class='row'>
-        </div>
-<button class= "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="addReading()">
-           <i class="material-icons">add</i>
-</button>
-    <ul class="demo-list-three mdl-list">
-      <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">
-        <mat-card>          
-        <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
-        </mat-card>  
-      </li>
-    </ul>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
     <div class="mdl-layout__header-row">
@@ -58,20 +30,31 @@
   <div class="android-content mdl-layout__content">
     <!-- START OF SPECIFIC SECTION -->
     <div class="android-more-section">
-      <style>
+      <!-- <style>
         .demo-list-three {
           width: 650px;
         }
-        </style>
-    
-        <ul class="demo-list-three mdl-list">
+        </style> -->
+        <div>
+           <h2> {{pageTitle}} </h2>
+    </div>
+    <div class='panel-body'>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Filter By..." id="sample3" [(ngModel)]='listFilter'/>
+      </mat-form-field>
+      <br>
+    </div>
+    <button class= "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="addReading()">
+      <i class="material-icons">add</i>
+    </button>
+        <ul >
           <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">
-    
-            <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
-           
-            
+            <mat-card class="reading-card">
+              <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>          
+            </mat-card>
           </li>
         </ul>
+    
     </div>
     <!-- END OF SPECIFIC SECTION -->
     <footer class="android-footer mdl-mega-footer">

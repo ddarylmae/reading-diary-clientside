@@ -5,6 +5,7 @@ import { ReadingService } from '../shared/reading.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ReadingDetailsComponent } from '../reading-details/reading-details.component';
 import { AddReadingComponent } from '../add-reading/add-reading.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-readings',
