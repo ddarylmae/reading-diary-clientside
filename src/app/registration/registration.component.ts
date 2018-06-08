@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkLoggedIn() {
-    if (this.token.isLoggedIn) {
+    if (this.token.isLoggedIn()) {
       this.router.navigateByUrl('dashboard');
     }
   }

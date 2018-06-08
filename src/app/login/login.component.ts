@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkLoggedIn() {
-    if (this.token.isLoggedIn) {
+    if (this.token.isLoggedIn()) {
       this.router.navigateByUrl('dashboard');
     }
   }
