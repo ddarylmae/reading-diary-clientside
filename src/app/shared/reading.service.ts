@@ -87,12 +87,8 @@ export class ReadingService {
     console.log('object');
     console.log(reading);
   //  this.currentReading.Id=reading.Id;
-    return this.http.delete<void>(url, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
-  }
+    return this.http.delete<void>(url);
+    }
 
 
 }

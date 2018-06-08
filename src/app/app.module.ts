@@ -28,7 +28,7 @@ import { MatDialogModule,
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
-
+import { DeleteConfirmationDialog } from './shared/delete-confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     RegistrationComponent,
     AddReadingComponent,
     StarComponent,
-    LoginComponent
+    LoginComponent,
+    DeleteConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -59,6 +60,6 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService, ScriptService ],
   bootstrap: [ AppComponent] ,
-  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, AddReadingComponent ]
+  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, AddReadingComponent, DeleteConfirmationDialog ]
 })
 export class AppModule { }
