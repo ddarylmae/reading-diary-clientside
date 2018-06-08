@@ -3,7 +3,6 @@ import { User } from '../shared/user.model';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../shared/user.service';
-// import { AuthService } from '../shared/auth.service';
 import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
 import { Router } from '@angular/router';
 import { TokenStorage } from '../token.storage';
@@ -30,16 +29,16 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private token: TokenStorage,
     private userService: UserService
-    // private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.checkLoggedIn();
   }
 
-  logoutUser() {
-    console.log('LOGOUTUSER CLICKED');
-    this.token.signOut();
-    // this.authService.logout();
+  checkLoggedIn() {
+    if (this.token.isLoggedIn) {
+      this.router.navigateByUrl('dashboard');
+    }
   }
 
   loginUser(form: NgForm) {

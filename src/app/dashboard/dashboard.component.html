@@ -12,6 +12,7 @@
           <nav class="android-navigation mdl-navigation">
             <a class="mdl-navigation__link current-tab" routerLink="/dashboard">Dashboard</a>
             <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
+            <!-- <a class="mdl-navigation__link" (click)="logout()">Logout</a> -->
           </nav>
         </div>
       </div>
@@ -24,7 +25,8 @@
         <a class="mdl-navigation__link current" routerLink="/dashboard">Dashboard</a>
         <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
         <!-- <div class="android-drawer-separator"></div> -->
-        <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span>
+        <span class="android-link" (click)="logout()">LOGOUT</span>
+        <!-- <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span> -->
       </nav>
     </div>
     <div class="android-content mdl-layout__content">

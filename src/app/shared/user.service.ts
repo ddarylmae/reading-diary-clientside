@@ -5,6 +5,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { MessageService } from './message.service';
 import { User } from './user.model';
+import { TokenStorage } from '../token.storage';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -13,6 +15,8 @@ export class UserService {
   private user: User;
 
   constructor(private http: HttpClient,
+    private token: TokenStorage,
+    private router: Router,
     private messageService: MessageService) { }
 
   registerUser(user: User): Observable<User> {
@@ -33,17 +37,9 @@ export class UserService {
     return this.http.post(this.baseUrl + '/login', user, httpOptions);
   }
 
-  isTokenExpired(token?: string): boolean {
-    // if (!token) {
-    //   token = this.getToken();
-    // }
-    // if (!token) {
-    //   return true;
-    // }
-    // const date = this.getTokenExpirationDate(token);
-    // return (date === undefined) ? false : !(date.valueOf() > new Date().valueOf());
-
-    return true;
+  logoutUser() {
+    this.token.signOut();
+    this.router.navigateByUrl('login');
   }
 
   /**

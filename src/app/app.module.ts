@@ -16,7 +16,6 @@ import { ScriptService } from './shared/script.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
-// import { AuthService } from './shared/auth.service';
 import { ReadingService } from './shared/reading.service';
 import { JWTInterceptor } from './app.interceptor';
 import { TokenStorage } from './token.storage';

@@ -4,6 +4,8 @@ import { Reading } from '../shared/reading.model';
 import { ReadingService } from '../shared/reading.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ReadingDetailsComponent } from '../reading-details/reading-details.component';
+import { UserService } from '../shared/user.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-readings',
@@ -17,7 +19,8 @@ export class ReadingsComponent implements OnInit {
 
   constructor(
     private readingService: ReadingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -39,5 +42,8 @@ export class ReadingsComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.userService.logoutUser();
+  }
 
 }
