@@ -29,7 +29,7 @@ import { MatDialogModule,
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
-
+import { DeleteConfDialogComponent } from './shared/delete-confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     ReadingDetailsComponent,
     RegistrationComponent,
     StarComponent,
-    LoginComponent
+    LoginComponent,
+    DeleteConfDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,6 @@ import { LoginComponent } from './login/login.component';
     RouteGuard, TokenStorage, ScriptService,
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true } ],
   bootstrap: [ AppComponent] ,
-  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]
+  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, DeleteConfDialogComponent ]
 })
 export class AppModule { }

@@ -37,7 +37,9 @@
     </mat-form-field>
     <br>
     <b>DateRead:</b>
-    {{ reading?.DateRead }}
+    <mat-form-field class="example-full-width">
+        <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.DateRead' value="{{ reading?.DateRead }}">
+    </mat-form-field>
     <br>
     <b>Favorite:</b> {{ reading?.Favorite }}</div>
 </mat-dialog-content>
@@ -48,7 +50,7 @@
       <i class="material-icons">mode_edit</i> {{isEditButton ? 'Edit' : 'Save'}}
     </button>
     <button mat-button mat-raised-button class="mat-raised-button mat-accent"
-    color="accent" (click)="deleteReading()" >
+    color="accent"   (click)="openConfirmationDialog()" >
       <i class="material-icons">delete_sweep</i> Delete
     </button>  
 </mat-dialog-actions>

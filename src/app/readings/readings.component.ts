@@ -16,6 +16,7 @@ export class ReadingsComponent implements OnInit {
 
   readingList: Reading[];
   readingDetailsRef: MatDialogRef<ReadingDetailsComponent>;
+  readingDeleted: Reading;
 
   constructor(
     private readingService: ReadingService,
@@ -33,12 +34,25 @@ export class ReadingsComponent implements OnInit {
 
   viewDetails(currentReading: Reading): void {
     this.readingDetailsRef = this.dialog.open(ReadingDetailsComponent, {
-      hasBackdrop: false,
-      height: '400px',
+      // disableClose: true,
+      // hasBackdrop: false,
+      height: '450px',
       width: '600px',
       data: {
         reading: currentReading
       }
+    });
+    this.readingDetailsRef.afterClosed().subscribe(
+      deletedReading => {
+      console.log('The reading details dialog was closed');
+      if (deletedReading !== '') {
+        console.log('The reading array should be updated here');
+        // const index: number = this.readingList.findIndex(reading => reading.Id === deletedReading.Id);
+        // this.readingList.splice(index, 1);
+        // this.readingDeleted.Id = deletedReadingId;
+        this.getReadings();
+      }
+
     });
   }
 
