@@ -14,9 +14,18 @@ export class JWTInterceptor implements HttpInterceptor {
   constructor(private token: TokenStorage, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq = req;
-    if (this.token.getToken() != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this .token.getToken())});
+    // let authReq = req;
+    if (!this.token.isTokenExpired()) {
+      // authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken())});
+      // const cloned = req.clone({
+      //   headers: req.headers.set('Authorization', 'Bearer ' + this.token.getToken())
+      // });
+      req = req.clone({
+        setHeaders: {
+          authorization: this.token.getToken()
+        }
+      });
+      console.log('REQ: ' + req);
     }
     return next.handle(req).do(
       (err: any) => {
