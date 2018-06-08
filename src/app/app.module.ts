@@ -16,7 +16,7 @@ import { ScriptService } from './shared/script.service';
 import { ReadingDetailsComponent } from './reading-details/reading-details.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
-import { AuthService } from './shared/auth.service';
+// import { AuthService } from './shared/auth.service';
 import { ReadingService } from './shared/reading.service';
 import { JWTInterceptor } from './app.interceptor';
 import { TokenStorage } from './token.storage';
@@ -59,7 +59,7 @@ import { LoginComponent } from './login/login.component';
     MatIconModule
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService,
-    RouteGuard, TokenStorage, ScriptService, AuthService,
+    RouteGuard, TokenStorage, ScriptService,
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true } ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent ]

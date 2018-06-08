@@ -25,10 +25,12 @@ export class UserService {
     );
   }
 
-  attemptAuth(username: string, password: string): Observable<any> {
-    const credentials = {Username: username, Password: password};
+  attemptAuth(user: User): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
     console.log('attempAuth ::');
-    return this.http.post(this.baseUrl + '/login', credentials);
+    return this.http.post(this.baseUrl + '/login', user, httpOptions);
   }
 
   isTokenExpired(token?: string): boolean {
@@ -40,6 +42,7 @@ export class UserService {
     // }
     // const date = this.getTokenExpirationDate(token);
     // return (date === undefined) ? false : !(date.valueOf() > new Date().valueOf());
+
     return true;
   }
 

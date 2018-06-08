@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { AuthService } from './shared/auth.service';
+import { TokenStorage } from './token.storage';
 
 @Injectable()
 export class RouteGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private authService: AuthService
+        private token: TokenStorage
     ) {}
 
     canActivate() {
-        if (!this.authService.isExpired()) {
-            return true;
+        if (this.token.isTokenExpired()) {
+            this.router.navigate(['login']);
+            return false;
         }
-        this.router.navigate(['login']);
-        return false;
+        return true;
     }
 }
