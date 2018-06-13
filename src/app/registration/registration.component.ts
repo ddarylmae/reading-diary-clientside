@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user.model';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorage } from '../token.storage';
 import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
 
 @Component({
@@ -26,7 +28,6 @@ export class RegistrationComponent implements OnInit {
   ]);
   confPassFormCtrl = new FormControl('', [
     Validators.required
-    // Validators.pattern('[a-z0-9._-]*'),
   ]);
   fnameFormCtrl = new FormControl('', [
     Validators.required,
@@ -40,11 +41,19 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private userService: UserService,
     private toastrService: ToastrService,
+    private token: TokenStorage,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    // this.resetForm();
+    this.checkLoggedIn();
     this.createForm();
+  }
+
+  checkLoggedIn() {
+    if (this.token.isLoggedIn()) {
+      this.router.navigateByUrl('dashboard');
+    }
   }
 
   createForm() {

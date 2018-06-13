@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReadingsComponent } from './readings/readings.component';
@@ -19,6 +18,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './shared/user.service';
 import { ReadingService } from './shared/reading.service';
 import { AddReadingComponent } from './add-reading/add-reading.component';
+import { JWTInterceptor } from './app.interceptor';
+import { TokenStorage } from './token.storage';
+import { RouteGuard } from './route-guard';
 import { MatDialogModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -28,7 +30,7 @@ import { MatDialogModule,
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
-import { DeleteConfirmationDialog } from './shared/delete-confirmation.component';
+import { DeleteConfDialogComponent } from './shared/delete-confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,7 @@ import { DeleteConfirmationDialog } from './shared/delete-confirmation.component
     AddReadingComponent,
     StarComponent,
     LoginComponent,
-    DeleteConfirmationDialog
+    DeleteConfDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,9 @@ import { DeleteConfirmationDialog } from './shared/delete-confirmation.component
     MatCardModule,
     MatIconModule
   ],
-  providers: [ CategoryService, MessageService, UserService, ReadingService, ScriptService ],
+  providers: [ CategoryService, MessageService, UserService, ReadingService,
+    RouteGuard, TokenStorage, ScriptService,
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true } ],
   bootstrap: [ AppComponent] ,
   entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, AddReadingComponent, DeleteConfirmationDialog ]
 })

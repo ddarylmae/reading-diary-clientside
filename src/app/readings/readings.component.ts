@@ -6,6 +6,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { ReadingDetailsComponent } from '../reading-details/reading-details.component';
 import { AddReadingComponent } from '../add-reading/add-reading.component';
 import { MatInputModule } from '@angular/material/input';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-readings',
@@ -35,7 +36,8 @@ export class ReadingsComponent implements OnInit {
 
   constructor(
     private readingService: ReadingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) { }
 
   performFilter(filterBy: string): Reading[] {
@@ -54,8 +56,8 @@ export class ReadingsComponent implements OnInit {
 
   viewDetails(currentReading: Reading): void {
     this.readingDetailsRef = this.dialog.open(ReadingDetailsComponent, {
-      //disableClose: true,
-      //hasBackdrop: false,
+      // disableClose: true,
+      // hasBackdrop: false,
       height: '450px',
       width: '600px',
       data: {
@@ -65,17 +67,21 @@ export class ReadingsComponent implements OnInit {
     this.readingDetailsRef.afterClosed().subscribe(
       deletedReading => {
       console.log('The reading details dialog was closed');
-      if (deletedReading!= "") {
+      if (deletedReading !== '') {
         console.log('The reading array should be updated here');
-        let index: number = this.readingList.findIndex(reading => reading.Id === deletedReading.Id);
-        this.readingList.splice(index,1);
-        //this.readingDeleted.Id = deletedReadingId;
+        // const index: number = this.readingList.findIndex(reading => reading.Id === deletedReading.Id);
+        // this.readingList.splice(index, 1);
+        // this.readingDeleted.Id = deletedReadingId;
+        this.getReadings();
       }
-      
+
     });
   }
 
   pageTitle: string = 'Reading List';
+  logout() {
+    this.userService.logoutUser();
+  }
 
   addReading(): void{
     this.addReadingRef = this.dialog.open(AddReadingComponent, {

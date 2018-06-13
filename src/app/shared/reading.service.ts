@@ -69,7 +69,7 @@ export class ReadingService {
   updateReading(reading: Reading): Observable<void> {
     // const url = `${this.apiUrl}/${reading.Id}`;
     const url = this.apiUrl + '' + reading.Id;
-  
+
     console.log('object');
     console.log(reading);
   //  this.currentReading.Id=reading.Id;
@@ -79,11 +79,11 @@ export class ReadingService {
       })
     });
   }
-  
+
   deleteReading(reading: Reading): Observable<void> {
     // const url = `${this.apiUrl}/${reading.Id}`;
     const url = this.apiUrl + '' + reading.Id;
-  
+
     console.log('object');
     console.log(reading);
   //  this.currentReading.Id=reading.Id;

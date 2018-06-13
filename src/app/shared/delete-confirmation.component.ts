@@ -3,15 +3,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Reading } from './reading.model';
 
 @Component({
-  selector: 'delete-confirmation-dialog',
+  selector: 'app-delete-dialog',
   templateUrl: 'delete-confirmation.component.html',
 })
-export class DeleteConfirmationDialog {
+export class DeleteConfDialogComponent {
 
   reading: Reading;
-  
+
   constructor(
-    public dialogRef: MatDialogRef<DeleteConfirmationDialog>,
+    public dialogRef: MatDialogRef<DeleteConfDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.reading = data.reading;
     }
