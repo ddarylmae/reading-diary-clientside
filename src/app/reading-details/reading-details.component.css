@@ -4,13 +4,73 @@ mat-form-field {
     height: 20px;
     border-top: 2px;
     width: 80%;
+    color: black;
   }
+  
+:host /deep/  input.mat-input-element:disabled {
+  color: black;
+
+}
+:host /deep/ .mat-datepicker {
+  color: black
+}
+
+input.mat-input-element {
+  color: blue;
+}
+
+:host /deep/ input.mat-input-element:matDatepicker {
+  color: blue;
+}
+
+:host /deep/ .mat-select-disabled .mat-select-value {
+  color: black;
+}
+
+:host /deep/ .mat-select-value {
+  color:blue;
+}
+
+
+div.mat-form-field-wrapper{
+  padding-bottom: 0em;
+}
+div.mat-input-wrapper.mat-form-field-wrapper{
+  padding-bottom: 0;
+}
+
+textarea.mat-input-element:disabled{
+  color: black;  
+}
+
+textarea.mat-input-element{
+  color: blue;  
+}
+
 #rating {
   font-size: 12sp;
   margin-top: 14px; 
   height: 20px;
 }
+
+mat-dialog-content {
+  height: 400px;
+}
+
+a.button:hover{
+  background: white;
+}
+
+textarea {
+  width: 600px;
+  height: 100px;
+}
+
 mat-input-infix div {
     padding-top: 0px;
     border-top: 0px;
+}
+
+input {
+  width: 300px;
 }
