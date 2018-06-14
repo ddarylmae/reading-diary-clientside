@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject, EventEmitter, ViewEncapsulation, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA, 
+  MatDialogRef, 
+  MatDialog,
+  MatDatepicker, 
+  MatNativeDateModule,
+  MatSelectModule  } from '@angular/material';
 import { Reading } from '../shared/reading.model';
 import { ReadingService } from '../shared/reading.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -8,6 +13,7 @@ import { CategoryService } from '../shared/category.service';
 import { Category } from '../shared/category.model';
 import { MatInputModule } from '@angular/material/input';
 import { DeleteConfDialogComponent } from '../shared/delete-confirmation.component';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reading-details',
@@ -21,9 +27,21 @@ export class ReadingDetailsComponent implements OnInit {
   @Output() private readingDeleted = new EventEmitter();
   reading: Reading;
   category: Category;
-  categoryName: string;
+  //categoryName: string;
   isEditButton: Boolean = true;
   deletedReading: Reading;
+  selectedDate: Date; 
+  date = new FormControl(new Date());
+  selectedCategory: number;
+  title = new FormControl('', [Validators.required]);
+  author = new FormControl('', [Validators.required]);
+  emptyRequiredFields: Boolean = false;
+
+  categories = [
+    {value: 1, viewValue: "Technical"},
+    {value: 7, viewValue: "Personal stuff"},
+    {value: 8, viewValue: "'Christian"}
+  ];
 
 
   constructor(
@@ -37,6 +55,15 @@ export class ReadingDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getReading();
+    this.selectedCategory = this.reading.Category; 
+  }
+
+  disableSaveButton(){
+    this.emptyRequiredFields = true;
+  }
+
+  enableSaveButton(){
+    this.emptyRequiredFields = false;
   }
 
   getReading(): void {
@@ -48,18 +75,20 @@ export class ReadingDetailsComponent implements OnInit {
     if (id != null) {
       // console.log('CATEGORY ID ' + id);
       this.categoryService.getCategoryDetails(id).subscribe(c => this.category = c);
-      this.categoryName = this.category.Name;
+      //this.categoryName = this.category.Name;
     }
   }
 
   updateReading(): void {
+    this.reading.Category = this.selectedCategory;
+    this.reading.DateRead = this.selectedDate;
     this.readingService.updateReading (this.reading)
     .subscribe(
       (data: void) => console.log('${this.reading.Title} updated successfully.'),
       (err: any) => console.log(err)
     );
-
   }
+  
   enableEditSaveMode(): void {
     if (this.isEditButton) {
       this.isEditButton = false;
@@ -67,6 +96,10 @@ export class ReadingDetailsComponent implements OnInit {
       this.updateReading();
       this.isEditButton = true;
     }
+  }
+  
+  changeDate (): void {
+    this.reading.DateRead = this.date.value;
   }
 
   updateRating(updatedRating): void {

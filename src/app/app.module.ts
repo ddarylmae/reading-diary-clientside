@@ -25,7 +25,10 @@ import { MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
@@ -56,7 +59,10 @@ import { DeleteConfDialogComponent } from './shared/delete-confirmation.componen
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService,
     RouteGuard, TokenStorage, ScriptService,
