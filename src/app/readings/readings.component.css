@@ -1,3 +1,17 @@
 .icon-white {
     color: white;
 }
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+/* .cat-item-toggle {
+
+} */
+
+.categories-toggle {
+    /* width: 300px; */
+    /* height: 45px; */
+    align-items: center;
+}

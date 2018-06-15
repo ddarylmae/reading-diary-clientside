@@ -38,7 +38,20 @@
         .demo-list-three {
           width: 650px;
         }
-        </style>
+      </style>
+      <mat-button-toggle-group #group="matButtonToggleGroup" class="categories-toggle">
+        <mat-button-toggle value="all" class="cat-item-toggle">
+          <mat-icon>list</mat-icon>All
+        </mat-button-toggle>
+        <mat-button-toggle value="book" class="cat-item-toggle">
+          <mat-icon>library_books</mat-icon>Books
+        </mat-button-toggle>
+        <mat-button-toggle value="article" class="cat-item-toggle">
+          <mat-icon>book</mat-icon>Articles
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+      
         <button mat-button color="accent" (click)="addNewReading()">Add new Reading</button>
         <ul class="demo-list-three mdl-list">
           <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">    

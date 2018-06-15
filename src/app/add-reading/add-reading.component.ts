@@ -3,6 +3,7 @@ import { ReadingService } from '../shared/reading.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../shared/message.service';
 import { Reading } from '../shared/reading.model';
+import * as moment from 'moment';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -31,6 +32,7 @@ export class AddReadingComponent implements OnInit {
     Validators.required,
     Validators.maxLength(200)
   ]);
+  dateFormCtrl = new FormControl();
 
   constructor(
     private readingService: ReadingService,
@@ -50,12 +52,16 @@ export class AddReadingComponent implements OnInit {
       Title: this.titleFormCtrl.value,
       Author: this.authorFormCtrl.value,
       Link: this.linkFormCtrl.value,
-      Summary: this.summaryFormCtrl.value
+      Summary: this.summaryFormCtrl.value,
+      Date: this.dateFormCtrl.value
       // Rating
       // Category
       // Favorite
       // Deleted
     });
+    const offset = moment(this.dateFormCtrl.value).utcOffset();
+    // const date = new Date(moment(this.dateFormCtrl.value).add(offset, 'm'));
+    console.log('offset ' + offset);
     this.readingService.addNewReading(this.reading).subscribe( data => {
       this.dialogRef.close();
       this.router.navigate(['/readings']);
