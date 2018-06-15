@@ -22,6 +22,7 @@ import { TokenStorage } from './token.storage';
 import { RouteGuard } from './route-guard';
 import { MatDialogModule,
   MatButtonModule,
+  MatSnackBarModule,
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
@@ -30,6 +31,7 @@ import { MatDialogModule,
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
 import { DeleteConfDialogComponent } from './shared/delete-confirmation.component';
+import { AddReadingComponent } from './add-reading/add-reading.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import { DeleteConfDialogComponent } from './shared/delete-confirmation.componen
     RegistrationComponent,
     StarComponent,
     LoginComponent,
-    DeleteConfDialogComponent
+    DeleteConfDialogComponent,
+    AddReadingComponent
   ],
   imports: [
     BrowserModule,
@@ -53,15 +56,17 @@ import { DeleteConfDialogComponent } from './shared/delete-confirmation.componen
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService,
     RouteGuard, TokenStorage, ScriptService,
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true } ],
   bootstrap: [ AppComponent] ,
-  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, DeleteConfDialogComponent ]
+  entryComponents: [ CategoryDetailsComponent, ReadingDetailsComponent, DeleteConfDialogComponent,
+    AddReadingComponent ]
 })
 export class AppModule { }

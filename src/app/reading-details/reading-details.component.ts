@@ -71,7 +71,6 @@ export class ReadingDetailsComponent implements OnInit {
 
   updateRating(updatedRating): void {
     this.reading.Rating = updatedRating;
-
     this.readingService.updateReading (this.reading)
     .subscribe(
       (data: void) => console.log('${this.reading.Title} updated successfully.'),

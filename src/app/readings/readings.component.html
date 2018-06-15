@@ -39,13 +39,10 @@
           width: 650px;
         }
         </style>
-    
+        <button mat-button color="accent" (click)="addNewReading()">Add new Reading</button>
         <ul class="demo-list-three mdl-list">
-          <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">
-    
+          <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">    
             <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
-           
-            
           </li>
         </ul>
     </div>

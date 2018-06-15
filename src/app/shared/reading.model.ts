@@ -10,4 +10,8 @@ export class Reading {
     Favorite: number;
     UserId: number;
     Deleted: number;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

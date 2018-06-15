@@ -1,0 +1,61 @@
+<div mat-dialog-title>
+    <span>Add new Reading</span>
+    <button style="float:right" mat-button mat-dialog-close><i class="material-icons">clear</i></button>
+   </div>
+  
+  <mat-dialog-content>
+    <form #addReadingForm="ngForm" (ngSubmit)="onSubmit(addReadingForm)" class="">
+      <b>Title:</b>
+      <mat-form-field>   
+        <!-- <input matInput [(ngModel)]='reading.Title'> -->
+        <input matInput [formControl]="titleFormCtrl">  
+      </mat-form-field>    
+      <br>
+      <b>Author:</b> 
+        <mat-form-field>
+          <!-- <input matInput placeholder="" [(ngModel)]='reading.Author'>   -->
+          <input matInput [formControl]="authorFormCtrl">
+        </mat-form-field>    
+      <br>
+      <div id="rating">
+        <b>Rating:</b>
+        <!-- <pm-star [rating]='reading?.Rating'></pm-star> -->
+      </div>
+      <b>Link:</b>
+      <mat-form-field class="example-full-width">
+        <!-- <input matInput [(ngModel)] = 'reading.Link'> -->
+        <input matInput [formControl]="linkFormCtrl">
+      </mat-form-field>
+      <br>
+      <b>Category:</b>
+      <mat-form-field class="example-full-width">
+        <!-- <input matInput [(ngModel)]='reading.Category'> -->
+        <input matInput [formControl]="linkFormCtrl">
+      </mat-form-field>
+      <br>
+      <b>Summary:</b>
+      <mat-form-field class="example-full-width">
+        <!-- <input matInput [(ngModel)] = 'reading.Summary'> -->
+        <input matInput [formControl]="summaryFormCtrl">
+      </mat-form-field>
+      <br>
+      <b>DateRead:</b>
+      <!-- <mat-form-field class="example-full-width">
+          <input [(ngModel)] = 'reading.DateRead'>          
+      </mat-form-field> -->
+      <br>
+      <b>Favorite:</b> 
+      <mat-dialog-actions>
+          <button mat-button mat-raised-button class="mat-raised-button mat-primary" color="primary" 
+          (click)="saveReading()">
+            <i class="material-icons">save</i> Save</button>
+          <button mat-button mat-raised-button class="mat-raised-button mat-accent" type="submit" color="accent" >
+            <i class="material-icons">cancel</i> Cancel
+          </button>  
+        </mat-dialog-actions>
+    </form>
+  </mat-dialog-content>
+  
+  
+  
+  

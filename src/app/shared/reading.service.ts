@@ -63,6 +63,17 @@ export class ReadingService {
     );
   }
 
+  addNewReading(reading: Reading): Observable<Reading> {
+    // tslint:disable-next-line:no-shadowed-variable
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<Reading>(this.apiUrl, reading, httpOptions).pipe(
+      tap((r: Reading) => this.log(`Added new reading with id=${r.Id}`)),
+      catchError(this.handleError<Reading>('postReading'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
