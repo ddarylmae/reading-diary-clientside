@@ -57,10 +57,9 @@ export class AddReadingComponent implements OnInit {
       // Deleted
     });
     this.readingService.addNewReading(this.reading).subscribe( data => {
-      // this.toastr.success('New reading added!');
-      this.openSnackBar('New reading added!', 'Success');
       this.dialogRef.close();
       this.router.navigate(['/readings']);
+      this.openSnackBar('New reading added!', 'Success');
     });
   }
 

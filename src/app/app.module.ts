@@ -26,7 +26,10 @@ import { MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
@@ -61,6 +64,9 @@ import { AddReadingComponent } from './add-reading/add-reading.component';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService,
     RouteGuard, TokenStorage, ScriptService,

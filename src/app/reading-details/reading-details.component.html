@@ -1,20 +1,32 @@
 <div mat-dialog-title>
   <span>Reading Details</span>
-  <button style="float:right" mat-button mat-dialog-close><i class="material-icons">clear</i></button>
+  <button id="close" style="float:right;" mat-icon-button mat-dialog-close>
+   <mat-icon>clear</mat-icon>
+</button>
  </div>
 
 <mat-dialog-content>
-  <div>
-    <b>Title:</b>
-    <mat-form-field>   
-      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Title' value="{{ reading?.Title }}">  
+  <b>Title*:</b>
+  <mat-form-field [formControl]="title" >
+      <input matInput disabled="{{isEditButton}}" 
+       [(ngModel)] = 'reading.Title' value="{{ reading?.Title }}" 
+      required #title="ngModel">  
+      <mat-error *ngIf="title.invalid; then disableSaveButton(); else enableSaveButton()" align="end">
+        Title is required
+      </mat-error>
+  </mat-form-field>
+  <br> 
+  <b>Author*:</b> 
+      <mat-form-field [formControl]="author">
+      <input matInput disabled="{{isEditButton}}"
+      [(ngModel)] = 'reading.Author' value="{{ reading?.Author }}"
+      required #author="ngModel">  
+      <mat-error *ngIf="author.invalid" align="end">
+        Author is required
+      </mat-error>
     </mat-form-field>    
     <br>
-    <b>Author:</b> 
-      <mat-form-field>
-      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Author' value="{{ reading?.Author }}">  
-    </mat-form-field>    
-    <br>
+    <div>
     <div id="rating">
       <b>Rating:</b>
       <pm-star (ratingUpdated)="updateRating($event)" 
@@ -22,30 +34,46 @@
     </div>
     <b>Link:</b>
     <mat-form-field class="example-full-width">
+      <a href={{reading.Link}}>
       <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Link' value="{{ reading?.Link }}">
+      </a>
     </mat-form-field>
     <br>
     <b>Category:</b>
     <mat-form-field class="example-full-width">
-      <!--input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'categoryName' value="{{ categoryName }}"-->
-      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Category' value="{{ reading.Category }}">
+      <mat-select id="Category" disabled="{{isEditButton}}" 
+      placeholder="" [(ngModel)] = "selectedCategory" name = "cat">
+        <mat-option *ngFor="let cat of categories" [value]="cat.value">
+          {{cat.viewValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    <br>
-    <b>Summary:</b>
+  <br>
+    <b>Date Read:</b>
     <mat-form-field class="example-full-width">
-      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Summary' value="{{ reading?.Summary }}">
-    </mat-form-field>
-    <br>
-    <b>DateRead:</b>
+        <input  
+        matInput disabled="{{isEditButton}}" 
+        [matDatepicker]="picker" 
+        [value]="reading.DateRead" 
+        [(ngModel)]="selectedDate">
+        <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker id="DateRead" #picker></mat-datepicker>
+    </mat-form-field>    
+  <br>  
     <mat-form-field class="example-full-width">
-        <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.DateRead' value="{{ reading?.DateRead }}">
+        <b>Summary:</b>
+        <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
+        cdkAutosizeTextarea="true" 
+        [(ngModel)] = 'reading.Summary'
+        value="{{ reading?.Summary }}"
+        placeholder=""></textarea>
+        <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
     </mat-form-field>
     <br>
-    <b>Favorite:</b> {{ reading?.Favorite }}</div>
+  </div>
 </mat-dialog-content>
-
 <mat-dialog-actions>
-    <button mat-button mat-raised-button class="mat-raised-button mat-primary" 
+    <button mat-button mat-raised-button disabled = "{{emptyRequiredFields}}" class="mat-raised-button mat-primary" 
     color="primary" (click)="enableEditSaveMode()">
       <i class="material-icons">mode_edit</i> {{isEditButton ? 'Edit' : 'Save'}}
     </button>
