@@ -42,6 +42,10 @@ export class UserService {
     this.router.navigateByUrl('login');
   }
 
+  getCurrentUserFname(): string {
+    return this.token.getUserFirstname();
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
