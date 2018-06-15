@@ -46,8 +46,6 @@ export class ReadingService {
 
   getLatestReading(): Observable<Reading> {
     const url = `${this.apiUrl}` + 'latest';
-    const lala = this.http.get<Reading>(url);
-    console.log('getLatestReading: ' + lala);
     return this.http.get<Reading>(url).pipe(
       tap(_ => this.log(`Retrieved latest reading`)),
       catchError(this.handleError<Reading>(`getLatestReading`))
@@ -56,7 +54,6 @@ export class ReadingService {
 
   getReadingsCount(): Observable<number> {
     const url = `${this.apiUrl}` + 'count';
-    console.log('getReadingsCount: ' + this.http.get<number>(url));
     return this.http.get<number>(url).pipe(
       tap((val) => { this.readingsCount = val; }),
       catchError(this.handleError<number>(`getReadingsCount`))

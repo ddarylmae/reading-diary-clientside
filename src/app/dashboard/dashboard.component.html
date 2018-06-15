@@ -33,14 +33,14 @@
       
       <div class="android-more-section">
         <!-- START OF SPECIFIC SECTION -->
-        <h3>Welcome, {{currentUser?.Firstname}}!</h3>
+        <h4>Welcome, {{currentUser?.Firstname}}!</h4>
         <div class="android-card-container mdl-grid">
             <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
                 <img src="assets/images/book-1.jpg">
               </div>
               <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">You have read {{bookCount}} books for this year so far.</h4>
+                 <h4 class="mdl-card__title-text">2018 Stats: {{bookCount}} books so far</h4>
               </div>
               <!-- <div class="mdl-card__supporting-text">
                 <span class="mdl-typography--font-light mdl-typography--subhead">
@@ -57,7 +57,8 @@
               </div>
               <div class="mdl-card__supporting-text">
                 <span class="mdl-typography--font-light mdl-typography--subhead">
-                  {{ lastRead?.Title }} by {{ lastRead?.Author }}
+                    <div *ngIf="lastRead?.Title!=''">{{ lastRead?.Title }} by {{ lastRead?.Author }}</div>
+                    <div *ngIf="lastRead?.Title==''">None :(</div>
                 </span>
               </div>
             </div>
@@ -75,7 +76,7 @@
                 </span>
               </div> -->
               <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" (click)="addNewReading()">
                    Add new Reading
                    <i class="material-icons">chevron_right</i>
                  </a>
