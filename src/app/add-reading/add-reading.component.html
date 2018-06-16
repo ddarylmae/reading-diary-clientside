@@ -29,9 +29,13 @@
       <br>
       <b>Category:</b>
       <mat-form-field class="example-full-width">
-        <!-- <input matInput [(ngModel)]='reading.Category'> -->
-        <input matInput [formControl]="linkFormCtrl">
+        <mat-select id="category-select" name="cat" [(ngModel)]="selectedCategory">
+          <mat-option *ngFor="let cat of categories" [value]="cat.Id">
+            {{cat.Name}}
+          </mat-option>          
+        </mat-select>
       </mat-form-field>
+      {{selectedCategory}}
       <br>
       <b>Summary:</b>
       <mat-form-field class="example-full-width">

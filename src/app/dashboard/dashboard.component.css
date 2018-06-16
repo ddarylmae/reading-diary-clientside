@@ -1,0 +1,16 @@
+.email-sidebar {
+    position: absolute;
+    bottom: 0px;
+    font-size: 15px;
+    padding-left: 0px;
+}
+.icon-sidebar {
+    position: absolute;
+    bottom: 5px;
+    font-size: 15px;
+}
+
+.sidebar-elems {
+    vertical-align: text-bottom;
+    width: 50px;
+}

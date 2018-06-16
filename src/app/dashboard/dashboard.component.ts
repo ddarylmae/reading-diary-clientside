@@ -32,10 +32,7 @@ export class DashboardComponent implements OnInit {
   }
 
   initializeValues() {
-    this.lastRead = new Reading({
-      Title: '',
-      Author: ''
-    });
+    this.lastRead = null;
   }
 
   logout() {
@@ -43,7 +40,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getLatest(): void {
-    this.readingService.getLatestReading().subscribe(c => { this.lastRead = c; });
+    this.readingService.getLatestReading().subscribe(
+      c => { this.lastRead = c; }
+    );
   }
 
   getStatistics(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user.model';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material';
 import { UserService } from '../shared/user.service';
 import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   usernameFormCtrl = new FormControl('', [
     Validators.required,
-    Validators.pattern('[a-z0-9._-]*'),
+    // Validators.pattern('[a-z0-9._-]*'),
   ]);
   passwordFormCtrl = new FormControl('', [
     Validators.required
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private token: TokenStorage,
+    public snackBar: MatSnackBar,
     private userService: UserService
   ) { }
 
@@ -42,17 +43,31 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(form: NgForm) {
-    this.user = new User ({
-      Username: this.usernameFormCtrl.value,
-      Password: this.passwordFormCtrl.value
+    if (form.status === 'VALID') {
+      this.user = new User ({
+        Username: this.usernameFormCtrl.value,
+        Password: this.passwordFormCtrl.value
+      });
+      console.log('form valid');
+      this.userService.attemptAuth(this.user).subscribe(
+        data => {
+          this.token.saveToken(data);
+          console.log('User is logged in');
+          this.router.navigateByUrl('dashboard');
+        },
+        error => {
+          this.openSnackBar('Invalid login details', 'Error');
+        }
+      );
+    } else {
+      console.log('invalid form');
+    }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
-    this.userService.attemptAuth(this.user).subscribe(
-      data => {
-        this.token.saveToken(data);
-        console.log('User is logged in');
-        this.router.navigateByUrl('dashboard');
-      }
-    );
   }
 
 }

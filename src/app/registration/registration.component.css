@@ -9,6 +9,22 @@
   }
   
 .registration-card {
-  width: 450px;
-  float: center;
+  width: 400px;
+}
+
+.login-title {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  color: #442c2e;
+}
+
+.login-btn {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 5px 0px 5px 0px;
+  background-color: #fedbd0;
+  color: #442c2e;
+  font-size: 16px;
 }

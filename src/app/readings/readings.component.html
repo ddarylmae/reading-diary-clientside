@@ -20,16 +20,21 @@
     </div>
   </div>
   <div class="android-drawer mdl-layout__drawer">
-    <span class="mdl-layout-title">
-      <img class="android-logo-image" src="assets/images/black-logo.png">
-    </span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
-      <a class="mdl-navigation__link current" routerLink="/readings">Readings</a>
-      <div class="android-drawer-separator"></div>
-      <span class="android-link" (click)="logout()">LOGOUT</span>
-      <!-- <span>Four tips to make your switch to Android quick and easy</span> -->
-    </nav>
+    <div class="mdl-layout-title">
+      <div class="sidebar-elems">
+        <!-- <i class="material-icons">account_circle</i> -->
+        <span class="mdl-typography--font-light email-sidebar">
+            <!-- {{currentUser?Email}} -->daryldalan@gmail.com
+        </span>
+      </div>         
+      </div>      
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
+        <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
+        <div class="android-drawer-separator"></div>
+        <a class="mdl-navigation__link drawer-link"><span (click)="logout()">Logout</span></a>
+        <!-- <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span> -->
+      </nav>
   </div>
   <div class="android-content mdl-layout__content">
     <!-- START OF SPECIFIC SECTION -->

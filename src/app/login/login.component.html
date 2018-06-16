@@ -1,41 +1,31 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> 
-  <!--Header Start-->
-  <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
-    <div class="mdl-layout__header-row">
-      <!-- <span class="android-title mdl-layout-title">
-        <img class="android-logo-image" src="images/logo.png">
-      </span> -->
-      <span class="mdl-layout-title">Reading Diary</span>
-    </div>
-  </div>
   <!--Header End-->
-
   <div class="android-content mdl-layout__content">
     <div class="android-more-section">
-      <mat-card class="login-card">
-        <mat-card-title>Login</mat-card-title>
-        <form #loginForm="ngForm" (ngSubmit)="loginUser()" class="login-form">
-          <mat-form-field class="login-field">
-            <input matInput placeholder="Username/Email" [formControl]="usernameFormCtrl" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="usernameFormCtrl.hasError('pattern') && !usernameFormCtrl.hasError('required')">
-              Invalid username
-            </mat-error>
-            <mat-error *ngIf="usernameFormCtrl.hasError('required')">
-              Please enter your username/email
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="login-field">
-            <input matInput type="password" placeholder="Password" [formControl]="passwordFormCtrl" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="passwordFormCtrl.hasError('required')">
-              Please enter your password
-            </mat-error>
-          </mat-form-field>
-          <button class="login-field" mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">
-            Submit
-          </button>
-        </form>        
-      </mat-card>
-      <!-- <button mat-raised-button color="accent" (click)="logoutUser()">Logout</button> -->
+      <div class="android-customized-section-text">
+          <mat-card class="login-card">
+            <mat-card-title class="login-title mdl-layout-title">Reading Diary</mat-card-title>
+            <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)" class="login-form" novalidate>
+              <mat-form-field class="login-field">
+                <input matInput placeholder="Username/Email" [formControl]="usernameFormCtrl" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="usernameFormCtrl.hasError('required')">
+                  Please enter your username/email
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="login-field">
+                <input matInput type="password" placeholder="Password" [formControl]="passwordFormCtrl" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="passwordFormCtrl.hasError('required')">
+                  Please enter your password
+                </mat-error>
+              </mat-form-field>
+              <button class="login-field login-btn" mat-raised-button color="accent" type="submit">LOGIN</button>
+            </form>
+            <a href="/registration" class="android-link mdl-button mdl-js-button">
+              Sign Up
+              <i class="material-icons">chevron_right</i>
+            </a>    
+          </mat-card>
+      </div>
     </div>
   </div>
 </div>

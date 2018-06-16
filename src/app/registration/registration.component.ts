@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user.model';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material';
 import { TokenStorage } from '../token.storage';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit {
   matcher = new CustomErrorStateMatcher();
 
   constructor(private userService: UserService,
-    private toastrService: ToastrService,
+    public snackBar: MatSnackBar,
     private token: TokenStorage,
     private router: Router,
     private formBuilder: FormBuilder) { }
@@ -108,17 +108,24 @@ export class RegistrationComponent implements OnInit {
     this.userService.registerUser(this.user).subscribe(
       result => {
         // Handle result
-        console.log('handle result');
+        this.openSnackBar('Successful Registration', 'Success');
+        // this.router.navigateByUrl('login');
       },
       error => {
-        console.log('handle error: ' + error);
-      },
-      () => {
+        // console.log('handle error: ' + error);
+        this.openSnackBar('Unsuccessful Registration', 'Error');
+      }
+      // () => {
         // 'onCompleted' callback.
         // No errors, route to new page here
-        console.log('SUCCESSFUL result');
-      }
+      //   console.log('SUCCESSFUL result');
+      // }
     );
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
 }

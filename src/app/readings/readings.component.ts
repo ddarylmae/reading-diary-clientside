@@ -69,7 +69,7 @@ export class ReadingsComponent implements OnInit {
 
     this.addReadingRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.reading = result;
+      this.getReadings();
     });
   }
 

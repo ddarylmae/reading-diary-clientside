@@ -71,6 +71,10 @@
       font-weight: 500;
       font-size: 15px;
     }
+
+    .drawer-link {
+      cursor: pointer;
+    }
   
     .android-navigation-container {
       /* Simple hack to make the overflow happen to the left instead... */
@@ -171,7 +175,7 @@
     .android-drawer .mdl-layout-title {
       position: relative;
       background: #fedbd0;
-      height: 200px;
+      height: 250px;
     }
   
       .android-drawer .android-logo-image {
@@ -380,6 +384,10 @@
     max-width: 1044px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .card-middle {
+    padding: 0px;
   }
   
     .android-more-section .android-section-title {

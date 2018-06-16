@@ -6,7 +6,8 @@ import { Reading } from '../shared/reading.model';
 import * as moment from 'moment';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Category } from '../shared/category.model';
+import { CategoryService } from '../shared/category.service';
 
 @Component({
   selector: 'app-add-reading',
@@ -14,6 +15,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-reading.component.css']
 })
 export class AddReadingComponent implements OnInit {
+
+  categories: Category[];
+  selectedCategory = 1;
 
   reading: Reading;
   titleFormCtrl = new FormControl('', [
@@ -39,33 +43,45 @@ export class AddReadingComponent implements OnInit {
     private messageService: MessageService,
     public snackBar: MatSnackBar,
     private router: Router,
+    private categoryService: CategoryService,
     public dialogRef: MatDialogRef<AddReadingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
-
+    this.getCategories();
   }
 
   onSubmit(form: NgForm) {
+    const offset = moment(this.dateFormCtrl.value).utcOffset();
+    // let date = new Date(moment(this.dateFormCtrl.value).format('YYYY MM DD'));
+    const date = this.dateFormCtrl.value.toLocaleDateString();
+    const newdate = new Date(moment(date).format('YYYY-MM-DD HH:mm:ss'));
     this.reading = new Reading({
       Title: this.titleFormCtrl.value,
       Author: this.authorFormCtrl.value,
       Link: this.linkFormCtrl.value,
       Summary: this.summaryFormCtrl.value,
-      Date: this.dateFormCtrl.value
+      Date: newdate,
       // Rating
-      // Category
+      Category: this.selectedCategory
       // Favorite
-      // Deleted
     });
-    const offset = moment(this.dateFormCtrl.value).utcOffset();
-    // const date = new Date(moment(this.dateFormCtrl.value).add(offset, 'm'));
-    console.log('offset ' + offset);
+    console.log('offset ' + newdate);
     this.readingService.addNewReading(this.reading).subscribe( data => {
       this.dialogRef.close();
       this.router.navigate(['/readings']);
       this.openSnackBar('New reading added!', 'Success');
+    });
+  }
+
+  saveReading() {
+    console.log('CALLED SAVE');
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe(c => {
+      this.categories = c;
     });
   }
 

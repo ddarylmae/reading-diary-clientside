@@ -27,7 +27,7 @@ export class ReadingDetailsComponent implements OnInit {
   @Output() private readingDeleted = new EventEmitter();
   reading: Reading;
   category: Category;
-  // categoryName: string;
+  categoryName: string;
   isEditButton: Boolean = true;
   deletedReading: Reading;
   selectedDate: Date;
