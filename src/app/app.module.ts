@@ -48,7 +48,7 @@ import { AddReadingComponent } from './add-reading/add-reading.component';
     StarComponent,
     LoginComponent,
     DeleteConfDialogComponent,
-    AddReadingComponent
+    AddReadingComponent,
   ],
   imports: [
     BrowserModule,

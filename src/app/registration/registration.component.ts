@@ -6,6 +6,7 @@ import { TokenStorage } from '../token.storage';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
+// import { PasswordValidation } from '../shared/password.validator';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,13 @@ import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
 })
 export class RegistrationComponent implements OnInit {
   user: User;
-  regForm: FormGroup;
+  // regForm: FormGroup;
+
+  passGrpForm = new FormGroup({
+    pwordFormCtrl: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    confPwordFormCtrl: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  }, this.passwordMatchValidator);
+
   emailFormCtrl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -22,19 +29,25 @@ export class RegistrationComponent implements OnInit {
   usernameFormCtrl = new FormControl('', [
     Validators.required,
     Validators.pattern('[a-z0-9._-]*'),
+    Validators.maxLength(50)
   ]);
   passwordFormCtrl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.maxLength(50),
+    Validators.minLength(5)
   ]);
   confPassFormCtrl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.maxLength(50)
   ]);
   fnameFormCtrl = new FormControl('', [
     Validators.required,
     Validators.pattern('[A-Z,a-z, ]*'),
+    Validators.maxLength(50)
   ]);
   lnameFormCtrl = new FormControl('', [
     Validators.pattern('[A-Z,a-z, ]*'),
+    Validators.maxLength(50)
   ]);
 
   matcher = new CustomErrorStateMatcher();
@@ -47,7 +60,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.checkLoggedIn();
-    this.createForm();
+    // this.createForm();
   }
 
   checkLoggedIn() {
@@ -56,11 +69,16 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  createForm() {
-    this.regForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      username: [null, Validators.required],
-    });
+  // createForm() {
+  //   this.regForm = this.formBuilder.group({
+  //     email: [null, [Validators.required, Validators.email]],
+  //     username: [null, Validators.required],
+  //   });
+  // }
+
+  passwordMatchValidator(g: FormGroup) {
+    return g.get('pwordFormCtrl').value === g.get('confPwordFormCtrl').value
+       ? null : {'mismatch': true};
   }
 
   resetForm(form?: NgForm) {
@@ -77,6 +95,7 @@ export class RegistrationComponent implements OnInit {
     console.log('FORM VALUES: ' + this.usernameFormCtrl.value + ' ' + this.emailFormCtrl.value +
       ' ' + this.passwordFormCtrl.value + ' ' + this.confPassFormCtrl.value + ' ' + this.fnameFormCtrl.value +
       ' ' + this.lnameFormCtrl.value);
+    if (this.isSignUpFormValid()) {
       this.user = new User ({
         Username: this.usernameFormCtrl.value,
         Email: this.emailFormCtrl.value,
@@ -84,43 +103,34 @@ export class RegistrationComponent implements OnInit {
         Firstname: this.fnameFormCtrl.value,
         Lastname: this.lnameFormCtrl.value
       });
+      this.userService.registerUser(this.user).subscribe(
+        result => {
+          // Handle result
+          this.openSnackBar('Successful Registration', 'Success');
+          // this.router.navigateByUrl('login');
+        },
+        error => {
+          // console.log('handle error: ' + error);
+          this.openSnackBar('Unsuccessful Registration', 'Error');
+        }
+        // () => {
+          // 'onCompleted' callback.
+          // No errors, route to new page here
+        //   console.log('SUCCESSFUL result');
+        // }
+      );
+    } else {
+      this.openSnackBar('Please enter valid inputs', 'Error');
+    }
+  }
 
-    // this.userService.registerUser(this.user).subscribe((data: any) => {
-    //   if (data.success === true) {
-    //     this.resetForm(form);
-    //     this.toastrService.success('Successfully registered');
-    //   } else {
-    //     this.toastrService.error(data.Errors[0]);
-    //   }
-    // });
-    // this.userService.registerUser(this.user).subscribe(
-    //   data => {
-    //     this.resetForm(form);
-    //     // this.userSer.getMaterials();
-    //     this.toastrService.success('New reading added!');
-    //   }
-    // );
-    // this.userService.registerUser(this.user).subscribe((data) => {
-    //   this.toastrService.success('Successfully registered');
-    //   console.log('SUCCESSFUL REGISTRATION');
-    //   }, error => { console.log('Error Messages: ' + data.Errors[0]);
-    // });
-    this.userService.registerUser(this.user).subscribe(
-      result => {
-        // Handle result
-        this.openSnackBar('Successful Registration', 'Success');
-        // this.router.navigateByUrl('login');
-      },
-      error => {
-        // console.log('handle error: ' + error);
-        this.openSnackBar('Unsuccessful Registration', 'Error');
-      }
-      // () => {
-        // 'onCompleted' callback.
-        // No errors, route to new page here
-      //   console.log('SUCCESSFUL result');
-      // }
-    );
+  private isSignUpFormValid(): boolean {
+    if (this.usernameFormCtrl.status === 'INVALID' || this.emailFormCtrl.status === 'INVALID' ||
+      this.passwordFormCtrl.status === 'INVALID' || this.confPassFormCtrl.status === 'INVALID' ||
+      this.fnameFormCtrl.status === 'INVALID' || this.lnameFormCtrl.status === 'INVALID') {
+        return false;
+    }
+    return true;
   }
 
   openSnackBar(message: string, action: string) {

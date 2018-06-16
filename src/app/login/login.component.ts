@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
   user: User;
 
   usernameFormCtrl = new FormControl('', [
-    Validators.required,
-    // Validators.pattern('[a-z0-9._-]*'),
+    Validators.required
   ]);
   passwordFormCtrl = new FormControl('', [
     Validators.required
   ]);
+
   matcher = new CustomErrorStateMatcher();
 
   constructor(
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(form: NgForm) {
-    if (form.status === 'VALID') {
+    if (this.usernameFormCtrl.status === 'VALID' && this.passwordFormCtrl.status === 'VALID') {
       this.user = new User ({
         Username: this.usernameFormCtrl.value,
         Password: this.passwordFormCtrl.value
@@ -59,8 +59,6 @@ export class LoginComponent implements OnInit {
           this.openSnackBar('Invalid login details', 'Error');
         }
       );
-    } else {
-      console.log('invalid form');
     }
   }
 

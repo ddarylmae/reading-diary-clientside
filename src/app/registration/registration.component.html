@@ -29,19 +29,23 @@
               <mat-error *ngIf="passwordFormCtrl.hasError('required')">
                 Password is required
               </mat-error>
-            </mat-form-field>
+              <mat-error *ngIf="passwordFormCtrl.hasError('minLength')">
+                Minimum length is 5 characters.
+              </mat-error>              
+            </mat-form-field>            
             <mat-form-field>
               <input matInput type="password" placeholder="Confirm Password" [formControl]="confPassFormCtrl" 
-              appEqualValidator="passwordFormCtrl" [errorStateMatcher]="matcher">
-              <mat-error *ngIf="!(confPassFormCtrl.value===passwordFormCtrl.value) && !confPassFormCtrl.hasError('required')">
+              appEqualValidator="passwordFormCtrl" [errorStateMatcher]="matcher" id="pwordInput">
+              <mat-error *ngIf="!confPassFormCtrl.hasError('required') && (confPassFormCtrl.value!=passwordFormCtrl.value)">
                 Passwords do not match
               </mat-error>
               <mat-error *ngIf="confPassFormCtrl.hasError('required')">
                 Password Confirmation is required
               </mat-error>
-            </mat-form-field>
+            </mat-form-field>         
             <mat-form-field>
-              <input matInput placeholder="First name" [formControl]="fnameFormCtrl" [errorStateMatcher]="matcher">
+              <input matInput placeholder="First name" [formControl]="fnameFormCtrl"
+                [errorStateMatcher]="matcher" id="confpwordInput">
               <mat-error *ngIf="fnameFormCtrl.hasError('pattern') && !fnameFormCtrl.hasError('required')">
                 Please enter valid characters
               </mat-error>
@@ -55,9 +59,6 @@
                 Please enter valid characters
               </mat-error>
             </mat-form-field>
-            <!-- <button mat-raised-button color="accent" type="submit" [disabled]="!registrationForm.valid">
-              Sign Up
-            </button> -->
             <button class="login-field login-btn registration-full-width" mat-raised-button color="accent" type="submit">SIGN UP</button>
           </form>
           <a href="/login" class="android-link mdl-button mdl-js-button">
@@ -69,7 +70,7 @@
     </div>
   </div>
 </div>
-<!-- 
-{{registrationForm?.value | json}}
+
+<!-- {{registrationForm?.value | json}}
 {{passwordFormCtrl?.value | json}}
 {{confPassFormCtrl?.value | json}} -->
