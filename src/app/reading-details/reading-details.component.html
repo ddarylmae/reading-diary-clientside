@@ -2,76 +2,82 @@
   <span>Reading Details</span>
   <button id="close" style="float:right;" mat-icon-button mat-dialog-close>
    <mat-icon>clear</mat-icon>
-</button>
- </div>
+  </button>
+</div>
 
 <mat-dialog-content>
-  <b>Title*:</b>
-  <mat-form-field [formControl]="title" >
-      <input matInput disabled="{{isEditButton}}" 
-       [(ngModel)] = 'reading.Title' value="{{ reading?.Title }}" 
-      required #title="ngModel">  
-      <mat-error *ngIf="title.invalid; then disableSaveButton(); else enableSaveButton()" align="end">
-        Title is required
-      </mat-error>
-  </mat-form-field>
-  <br> 
-  <b>Author*:</b> 
-      <mat-form-field [formControl]="author">
-      <input matInput disabled="{{isEditButton}}"
-      [(ngModel)] = 'reading.Author' value="{{ reading?.Author }}"
-      required #author="ngModel">  
-      <mat-error *ngIf="author.invalid" align="end">
-        Author is required
-      </mat-error>
-    </mat-form-field>    
-    <br>
-    <div>
-    <div id="rating">
-      <b>Rating:</b>
-      <pm-star (ratingUpdated)="updateRating($event)" 
-      [rating]='reading.Rating'></pm-star>
-    </div>
-    <b>Link:</b>
-    <mat-form-field class="example-full-width">
+  <ul class="demo-list-item mdl-list">
+    <li class="mdl-list__item">   
+      <b>Title*:</b>
+      <mat-form-field>
+        <input matInput  
+        [formControl]="titleFormCtrl"
+        [errorStateMatcher]="matcher">
+        <mat-error *ngIf="titleFormCtrl.hasError('required')" align="end">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+    </li>
+    <li class="mdl-list__item">   
+      <b>Author*:</b> 
+      <mat-form-field>
+        <input matInput  
+        [formControl]="authorFormCtrl"
+        [errorStateMatcher]="matcher">
+        <mat-error *ngIf="authorFormCtrl.hasError('required')" align="end">
+          Title is required
+        </mat-error>
+      </mat-form-field>    
+    </li>
+    <li class="mdl-list__item">   
+      <div id="rating">
+        <b>Rating:</b>
+        <pm-star (ratingUpdated)="updateRating($event)" 
+        [rating]='reading.Rating'></pm-star>
+      </div>
+    </li>
+    <li class="mdl-list__item">   
+      <b>Link:</b>
+      <mat-form-field class="example-full-width">
       <a href={{reading.Link}}>
-      <input matInput disabled="{{isEditButton}}" placeholder="" [(ngModel)] = 'reading.Link' value="{{ reading?.Link }}">
+      <input matInput style="text-decoration: none; outline:none" mat-input-underline="none" disabled="{{isEditButton}}" [(ngModel)] = 'reading.Link' value="{{ reading?.Link }}">
       </a>
-    </mat-form-field>
-    <br>
-    <b>Category:</b>
-    <mat-form-field class="example-full-width">
-      <mat-select id="Category" disabled="{{isEditButton}}" 
-      placeholder="" [(ngModel)] = "selectedCategory" name = "cat">
-        <mat-option *ngFor="let cat of categories" [value]="cat.value">
-          {{cat.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  <br>
-    <b>Date Read:</b>
-    <mat-form-field class="example-full-width">
-        <input  
-        matInput disabled="{{isEditButton}}" 
-        [matDatepicker]="picker" 
-        [value]="reading.DateRead" 
-        [(ngModel)]="selectedDate">
-        <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker id="DateRead" #picker></mat-datepicker>
-    </mat-form-field>    
-  <br>  
-    <mat-form-field class="example-full-width">
-        <b>Summary:</b>
-        <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
-        cdkAutosizeTextarea="true" 
-        [(ngModel)] = 'reading.Summary'
-        value="{{ reading?.Summary }}"
-        placeholder=""></textarea>
-        <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
-    </mat-form-field>
-    <br>
-  </div>
+      </mat-form-field>
+    </li>
+    <li class="mdl-list__item">   
+      <b>Category:</b>
+      <mat-form-field class="example-full-width">
+        <mat-select id="Category" disabled="{{isEditButton}}" 
+        placeholder="" [(ngModel)] = "selectedCategory" name = "cat">
+          <mat-option *ngFor="let cat of categories" [value]="cat.value">
+            {{cat.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
+    <li class="mdl-list__item">   
+      <b>Date&nbsp;Read:</b>
+      <mat-form-field class="example-full-width">
+          <input  
+          matInput  
+          [matDatepicker]="picker" 
+          [formControl]="dateFormCtrl">
+          <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker id="DateRead" #picker></mat-datepicker>
+      </mat-form-field>    
+    </li>
+  </ul>  
+      <mat-form-field id="summary" class="example-full-width">
+          <b>Summary:</b>
+          <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
+          cdkAutosizeTextarea="true" 
+          [(ngModel)] = 'reading.Summary'
+          value="{{ reading?.Summary }}"
+          placeholder=""></textarea>
+          <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+      </mat-form-field>
 </mat-dialog-content>
+
 <mat-dialog-actions>
     <button mat-button mat-raised-button disabled = "{{emptyRequiredFields}}" class="mat-raised-button mat-primary" 
     color="primary" (click)="enableEditSaveMode()">
@@ -82,4 +88,3 @@
       <i class="material-icons">delete_sweep</i> Delete
     </button>  
 </mat-dialog-actions>
-

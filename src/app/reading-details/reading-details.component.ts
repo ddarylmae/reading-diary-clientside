@@ -5,7 +5,8 @@ import { MAT_DIALOG_DATA,
   MatDialog,
   MatDatepicker,
   MatNativeDateModule,
-  MatSelectModule  } from '@angular/material';
+  MatSelectModule,
+  MatListModule  } from '@angular/material';
 import { Reading } from '../shared/reading.model';
 import { ReadingService } from '../shared/reading.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,12 +31,24 @@ export class ReadingDetailsComponent implements OnInit {
   categoryName: string;
   isEditButton: Boolean = true;
   deletedReading: Reading;
-  selectedDate: Date;
-  date = new FormControl(new Date());
   selectedCategory: number;
-  title = new FormControl('', [Validators.required]);
-  author = new FormControl('', [Validators.required]);
   emptyRequiredFields: Boolean = false;
+  titleFormCtrl = new FormControl({value: '', disabled: true}, [
+    Validators.required,
+    // Validators.pattern('[a-z0-9._-]*'),
+  ]);
+  authorFormCtrl = new FormControl({value: '', disabled: true}, [
+    Validators.required,
+    // Validators.pattern('[a-z0-9._-]*'),
+  ]);
+  dateFormCtrl = new FormControl({value: '', disabled : true});
+  categoryList: Category[];
+  categories = [
+    {value: 1, viewValue: 'Technical'},
+    {value: 7, viewValue: 'Personal stuff'},
+    {value: 8, viewValue: 'Christian'}
+  ];
+
 
   constructor(
     private readingService: ReadingService,
@@ -46,9 +59,17 @@ export class ReadingDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data
   ) { }
 
+  getCategories(): void {
+    this.categoryService.getAllCategories().subscribe(categories => this.categoryList = categories);
+  }
+
   ngOnInit() {
     this.getReading();
+    this.getCategories();
     this.selectedCategory = this.reading.Category;
+    this.titleFormCtrl.setValue (this.reading.Title);
+    this.authorFormCtrl.setValue (this.reading.Author);
+    this.dateFormCtrl.setValue (this.reading.DateRead);
   }
 
   disableSaveButton() {
@@ -74,7 +95,9 @@ export class ReadingDetailsComponent implements OnInit {
 
   updateReading(): void {
     this.reading.Category = this.selectedCategory;
-    this.reading.DateRead = this.selectedDate;
+    this.reading.DateRead = this.dateFormCtrl.value;
+    this.reading.Title = this.titleFormCtrl.value;
+    this.reading.Author = this.authorFormCtrl.value;
     this.readingService.updateReading (this.reading)
     .subscribe(
       (data: void) => console.log('${this.reading.Title} updated successfully.'),
@@ -84,16 +107,24 @@ export class ReadingDetailsComponent implements OnInit {
 
   enableEditSaveMode(): void {
     if (this.isEditButton) {
+      this.titleFormCtrl.enable();
+      this.authorFormCtrl.enable();
+      this.dateFormCtrl.enable();
       this.isEditButton = false;
     } else {
       this.updateReading();
+      this.titleFormCtrl.disable();
+      this.authorFormCtrl.disable();
+      this.dateFormCtrl.disable();
       this.isEditButton = true;
     }
   }
 
+  /*
   changeDate (): void {
     this.reading.DateRead = this.date.value;
   }
+  */
 
   updateRating(updatedRating): void {
     this.reading.Rating = updatedRating;
@@ -128,6 +159,7 @@ export class ReadingDetailsComponent implements OnInit {
         this.router.navigate(['/readings']);
       }
     });
+
   }
 }
 
