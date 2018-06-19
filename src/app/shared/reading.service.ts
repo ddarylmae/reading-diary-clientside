@@ -110,5 +110,14 @@ export class ReadingService {
     // const url = `${this.apiUrl}/${reading.Id}`;
     const url = this.apiUrl + '' + reading.Id;
     return this.http.delete<void>(url);
-    }
+  }
+
+  updateFavorite(id: number): Observable<void> {
+    const url = this.apiUrl + id + '/fave';
+    return this.http.put<void>(url, id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
 }

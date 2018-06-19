@@ -58,9 +58,28 @@
       <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
       
         <button mat-button color="accent" (click)="addNewReading()">Add new Reading</button>
-        <ul class="demo-list-three mdl-list">
-          <li class="mdl-list__item mdl-list__item--three-line" *ngFor="let reading of readingList">    
-            <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>,<i> {{reading.Author}} <br> {{reading.Summary}}</i></a>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Filter By..." id="sample3" [(ngModel)]='listFilter'/>
+        </mat-form-field>
+        <ul class="mdl-list">		
+          <li class="mdl-list__item mdl-list__item--three-line reading-list-item" *ngFor="let reading of readingList">   
+		        <mat-card class="reading-card">
+              <span class="mdl-list__item-primary-content reading-text" (click)="viewDetails(reading)">
+                <!-- <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>, {{reading.Author}} <br> {{reading.Summary}}</a> -->
+                <span class="reading-title"><b>{{reading.Title}}</b></span>, {{reading.Author}}
+                <span class="mdl-list__item-text-body">
+                  {{reading.Summary}}
+                </span>
+              </span>
+              <span class="mdl-list__item-secondary-content">
+                <a class="mdl-list__item-secondary-action" (click)="toggleFavorite(reading.Id)">
+                  <!-- <span ([ngModel])='favoriteIcon'> -->
+                  <i class="material-icons">{{ reading.Favorite ? 'favorite' : 'favorite_border'}}</i>
+                  <!-- <i class="material-icons" >{{favoriteIcon}}</i> -->
+                  <!-- </span> -->
+                </a>
+              </span>
+          </mat-card>
           </li>
         </ul>
     </div>

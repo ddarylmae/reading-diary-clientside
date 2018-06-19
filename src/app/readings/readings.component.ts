@@ -8,6 +8,7 @@ import { UserService } from '../shared/user.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AddReadingComponent } from '../add-reading/add-reading.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-readings',
@@ -17,6 +18,10 @@ import { AddReadingComponent } from '../add-reading/add-reading.component';
 export class ReadingsComponent implements OnInit {
 
   readingList: Reading[];
+  _listFilter: string;
+  faveStatus = 1;
+  favoriteIcon = 'favorite';
+
   readingDetailsRef: MatDialogRef<ReadingDetailsComponent>;
   addReadingRef: MatDialogRef<AddReadingComponent>;
   readingDeleted: Reading;
@@ -31,8 +36,35 @@ export class ReadingsComponent implements OnInit {
     this.getReadings();
   }
 
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    if (this.listFilter) {
+      this.readingList = this.performFilter(this.listFilter);
+    } else {
+      this.getReadings();
+    }
+  }
+
+  performFilter(filterBy: string): Reading[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.readingList.filter((reading: Reading) =>
+      reading.Title.toLocaleLowerCase().indexOf(filterBy) !== -1 );
+  }
+
+  toggleFavorite(id: number): void {
+    console.log('TOGGLE CALLED');
+    this.readingService.updateFavorite(id).subscribe();
+    this.getReadings();
+  }
+
   getReadings(): void {
-    this.readingService.getAllReadings().subscribe(readings => this.readingList = readings);
+    this.readingService.getAllReadings().subscribe(
+      readings => this.readingList = readings
+    );
   }
 
   viewDetails(currentReading: Reading): void {

@@ -1,3 +1,31 @@
+.reading-card {
+    height: 60px;
+    /* min-height: 35px; */
+    margin-bottom: 0px;
+    width: 100%;
+    display: -webkit-flex;
+    cursor: pointer;
+}
+
+.reading-list-item {
+    height: 120px;
+}
+
+.reading-text {
+    font-size: 16px;
+    text-align: justify;
+    width: 95%;
+}
+
+.reading-title {
+    font-style: bold;
+}
+
+.summary {
+    font-style: normal;
+    height: 100%;
+}
+
 .icon-white {
     color: white;
 }
