@@ -42,8 +42,8 @@ export class UserService {
     this.router.navigateByUrl('login');
   }
 
-  getCurrentUserFname(): string {
-    return this.token.getUserFirstname();
+  getCurrentUserDetails(): User {
+    return this.token.getUserLoginDetails();
   }
 
   /**

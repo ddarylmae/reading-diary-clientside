@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
 
   getUserInfo(): void {
     this.currentUser = new User();
-    this.currentUser.Firstname = this.userService.getCurrentUserFname();
+    this.currentUser = this.userService.getCurrentUserDetails();
   }
 
   addNewReading() {

@@ -33,8 +33,14 @@ export class TokenStorage {
     return (decoded != null && decoded.exp > current_time) ? false : true;
   }
 
-  getUserFirstname(): string {
+  getUserLoginDetails(): User {
+    const userDetails = new User;
     const decoded = (this.isLoggedIn()) ? jwt_decode(this.getToken()) : null;
-    return (decoded != null) ? decoded.given_name : 'Unknown';
+    if (decoded != null) {
+      userDetails.Firstname = decoded.given_name;
+      userDetails.Email = decoded.email;
+      return userDetails;
+    }
+    return null;
   }
 }
