@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AddReadingComponent } from '../add-reading/add-reading.component';
 import { MatInputModule } from '@angular/material/input';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-readings',
@@ -17,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class ReadingsComponent implements OnInit {
 
+  currentUser: User;
   readingList: Reading[];
   _listFilter: string;
   faveStatus = 1;
@@ -34,6 +36,7 @@ export class ReadingsComponent implements OnInit {
 
   ngOnInit() {
     this.getReadings();
+    this.getUserInfo();
   }
 
   get listFilter(): string {
@@ -61,8 +64,20 @@ export class ReadingsComponent implements OnInit {
     this.getReadings();
   }
 
+  getUserInfo(): void {
+    this.currentUser = new User();
+    this.currentUser = this.userService.getCurrentUserDetails();
+  }
+
   getReadings(): void {
     this.readingService.getAllReadings().subscribe(
+      readings => this.readingList = readings
+    );
+  }
+
+  getByCategory(categoryId: number): void {
+    console.log('getByCategory comp ' + categoryId);
+    this.readingService.getReadingsByCategory(categoryId).subscribe(
       readings => this.readingList = readings
     );
   }

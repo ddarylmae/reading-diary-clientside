@@ -1,3 +1,15 @@
+.filter-field {
+    width: 300px;
+}
+
+.search-add-fields {
+    padding-top: 20px;
+}
+
+.new-reading {
+    height: 41px;
+}
+
 .reading-card {
     height: 60px;
     /* min-height: 35px; */
@@ -5,6 +17,10 @@
     width: 100%;
     display: -webkit-flex;
     cursor: pointer;
+}
+
+.reading-list {
+    padding-top: 0px;
 }
 
 .reading-list-item {

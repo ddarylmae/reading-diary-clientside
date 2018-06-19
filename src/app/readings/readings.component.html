@@ -20,22 +20,20 @@
     </div>
   </div>
   <div class="android-drawer mdl-layout__drawer">
-    <div class="mdl-layout-title">
-      <div class="sidebar-elems">
-        <!-- <i class="material-icons">account_circle</i> -->
-        <span class="mdl-typography--font-light email-sidebar">
-            <!-- {{currentUser?Email}} -->daryldalan@gmail.com
-        </span>
-      </div>         
+      <div class="mdl-layout-title">
+        <div class="sidebar-elems">
+          <span class="mdl-typography--font-light email-sidebar">
+            {{currentUser?.Email}}
+          </span>
+        </div>         
       </div>      
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
         <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
         <div class="android-drawer-separator"></div>
         <a class="mdl-navigation__link drawer-link"><span (click)="logout()">Logout</span></a>
-        <!-- <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span> -->
       </nav>
-  </div>
+    </div>
   <div class="android-content mdl-layout__content">
     <!-- START OF SPECIFIC SECTION -->
     <div class="android-more-section">
@@ -45,43 +43,44 @@
         }
       </style>
       <mat-button-toggle-group #group="matButtonToggleGroup" class="categories-toggle">
-        <mat-button-toggle value="all" class="cat-item-toggle">
+        <mat-button-toggle value="all" class="cat-item-toggle" (click)="getReadings()">
           <mat-icon>list</mat-icon>All
         </mat-button-toggle>
-        <mat-button-toggle value="book" class="cat-item-toggle">
+        <mat-button-toggle value="book" class="cat-item-toggle" (click)="getByCategory(1)">
           <mat-icon>library_books</mat-icon>Books
         </mat-button-toggle>
-        <mat-button-toggle value="article" class="cat-item-toggle">
+        <mat-button-toggle value="article" class="cat-item-toggle" (click)="getByCategory(7)">
           <mat-icon>book</mat-icon>Articles
         </mat-button-toggle>
       </mat-button-toggle-group>
       <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
-      
-        <button mat-button color="accent" (click)="addNewReading()">Add new Reading</button>
-        <mat-form-field>
-          <input matInput type="text" placeholder="Filter By..." id="sample3" [(ngModel)]='listFilter'/>
+      <div class="android-card-container mdl-grid search-add-fields">
+        <mat-form-field class="filter-field">
+          <input matInput type="text" placeholder="Filter By Title" id="sample3" [(ngModel)]='listFilter'/>
         </mat-form-field>
-        <ul class="mdl-list">		
-          <li class="mdl-list__item mdl-list__item--three-line reading-list-item" *ngFor="let reading of readingList">   
-		        <mat-card class="reading-card">
-              <span class="mdl-list__item-primary-content reading-text" (click)="viewDetails(reading)">
-                <!-- <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>, {{reading.Author}} <br> {{reading.Summary}}</a> -->
-                <span class="reading-title"><b>{{reading.Title}}</b></span>, {{reading.Author}}
-                <span class="mdl-list__item-text-body">
-                  {{reading.Summary}}
-                </span>
+        <button class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase new-reading" (click)="addNewReading()">Add new Reading</button>
+      </div>      
+      <ul class="mdl-list reading-list">		
+        <li class="mdl-list__item mdl-list__item--three-line reading-list-item" *ngFor="let reading of readingList">   
+          <mat-card class="reading-card">
+            <span class="mdl-list__item-primary-content reading-text" (click)="viewDetails(reading)">
+              <!-- <a class="android-link"(click)="viewDetails(reading)"> <b>{{reading.Title}}</b>, {{reading.Author}} <br> {{reading.Summary}}</a> -->
+              <span class="reading-title"><b>{{reading.Title}}</b></span>, {{reading.Author}}
+              <span class="mdl-list__item-text-body">
+                {{reading.Summary}}
               </span>
-              <span class="mdl-list__item-secondary-content">
-                <a class="mdl-list__item-secondary-action" (click)="toggleFavorite(reading.Id)">
-                  <!-- <span ([ngModel])='favoriteIcon'> -->
-                  <i class="material-icons">{{ reading.Favorite ? 'favorite' : 'favorite_border'}}</i>
-                  <!-- <i class="material-icons" >{{favoriteIcon}}</i> -->
-                  <!-- </span> -->
-                </a>
-              </span>
-          </mat-card>
-          </li>
-        </ul>
+            </span>
+            <span class="mdl-list__item-secondary-content">
+              <a class="mdl-list__item-secondary-action" (click)="toggleFavorite(reading.Id)">
+                <!-- <span ([ngModel])='favoriteIcon'> -->
+                <i class="material-icons">{{ reading.Favorite ? 'favorite' : 'favorite_border'}}</i>
+                <!-- <i class="material-icons" >{{favoriteIcon}}</i> -->
+                <!-- </span> -->
+              </a>
+            </span>
+        </mat-card>
+        </li>
+      </ul>
     </div>
     <!-- END OF SPECIFIC SECTION -->
     <footer class="android-footer mdl-mega-footer">

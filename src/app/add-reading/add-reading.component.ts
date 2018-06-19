@@ -55,19 +55,19 @@ export class AddReadingComponent implements OnInit {
   onSubmit(form: NgForm) {
     const offset = moment(this.dateFormCtrl.value).utcOffset();
     // let date = new Date(moment(this.dateFormCtrl.value).format('YYYY MM DD'));
-    const date = this.dateFormCtrl.value.toLocaleDateString();
-    const newdate = new Date(moment(date).format('YYYY-MM-DD HH:mm:ss'));
+    // const date = this.dateFormCtrl.value.toLocaleDateString();
+    // const newdate = new Date(moment(date).format('YYYY-MM-DD HH:mm:ss'));
     this.reading = new Reading({
       Title: this.titleFormCtrl.value,
       Author: this.authorFormCtrl.value,
       Link: this.linkFormCtrl.value,
       Summary: this.summaryFormCtrl.value,
-      Date: newdate,
+      // Date: newdate,
       // Rating
       Category: this.selectedCategory
       // Favorite
     });
-    console.log('offset ' + newdate);
+    // console.log('offset ' + newdate);
     this.readingService.addNewReading(this.reading).subscribe( data => {
       this.dialogRef.close();
       this.router.navigate(['/readings']);

@@ -28,10 +28,20 @@ export class ReadingService {
    * Gets list of readings from Web API
    */
   getAllReadings(): Observable<Reading[]> {
-    this.messageService.add('MaterialService: Retrieved materials');
+    this.messageService.add('ReadingService: Retrieved materials');
     return this.http.get<Reading[]>(this.apiUrl)
       .pipe(
         tap(reading => this.log(`Retrieved readings`)),
+        catchError(this.handleError('getReadings', []))
+      );
+  }
+
+  getReadingsByCategory(catId: number): Observable<Reading[]> {
+    const url = `${this.apiUrl}/${catId}` + '/category';
+    this.messageService.add('ReadingService: Retrieved materials by category');
+    return this.http.get<Reading[]>(url)
+      .pipe(
+        tap(reading => this.log(`Retrieved readings by category`)),
         catchError(this.handleError('getReadings', []))
       );
   }
@@ -71,31 +81,6 @@ export class ReadingService {
     );
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
-
-  /**
-   * Log a MaterialService message with MessageService
-   */
-  private log(message: string) {
-    this.messageService.add('MaterialService: ' + message);
-    console.log(message);
-  }
-
   updateReading(reading: Reading): Observable<void> {
     // const url = `${this.apiUrl}/${reading.Id}`;
     const url = this.apiUrl + '' + reading.Id;
@@ -119,5 +104,30 @@ export class ReadingService {
         'Content-Type': 'application/json'
       })
     });
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /**
+   * Log a MaterialService message with MessageService
+   */
+  private log(message: string) {
+    this.messageService.add('MaterialService: ' + message);
+    console.log(message);
   }
 }
