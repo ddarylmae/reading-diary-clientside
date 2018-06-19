@@ -28,7 +28,8 @@ import { MatDialogModule,
   MatIconModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule,
+  MatListModule
 } from '@angular/material';
 import { StarComponent } from './shared/star.component';
 import { LoginComponent } from './login/login.component';
@@ -62,7 +63,8 @@ import { DeleteConfDialogComponent } from './shared/delete-confirmation.componen
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   providers: [ CategoryService, MessageService, UserService, ReadingService,
     RouteGuard, TokenStorage, ScriptService,

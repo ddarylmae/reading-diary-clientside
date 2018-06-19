@@ -36,7 +36,7 @@ export class ReadingsComponent implements OnInit {
     this.readingDetailsRef = this.dialog.open(ReadingDetailsComponent, {
       // disableClose: true,
       // hasBackdrop: false,
-      height: '5400px',
+      height: '540px',
       width: '600px',
       data: {
         reading: currentReading
