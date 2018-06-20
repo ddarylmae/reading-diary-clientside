@@ -12,10 +12,7 @@
         <nav class="android-navigation mdl-navigation">
           <a class="mdl-navigation__link" routerLink="/dashboard">Dashboard</a>
           <a class="mdl-navigation__link current-tab" routerLink="/readings">Readings</a>
-          <!-- <a class="mdl-navigation__link" (click)="logout()">Logout</a> -->
         </nav>
-        <!-- <span class="logout"></span> -->
-        <!-- <mat-icon class="icon-white">home</mat-icon> -->
       </div>
     </div>
   </div>
@@ -53,13 +50,12 @@
           <mat-icon>book</mat-icon>Articles
         </mat-button-toggle>
       </mat-button-toggle-group>
-      <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
       <div class="android-card-container mdl-grid search-add-fields">
         <mat-form-field class="filter-field">
           <input matInput type="text" placeholder="Filter By Title" id="sample3" [(ngModel)]='listFilter'/>
         </mat-form-field>
         <button class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase new-reading" (click)="addNewReading()">Add new Reading</button>
-      </div>      
+      </div>
       <ul class="mdl-list reading-list">		
         <li class="mdl-list__item mdl-list__item--three-line reading-list-item" *ngFor="let reading of readingList">   
           <mat-card class="reading-card">
@@ -72,11 +68,7 @@
             </span>
             <span class="mdl-list__item-secondary-content">
               <a class="mdl-list__item-secondary-action" (click)="toggleFavorite(reading.Id)">
-                <!-- <span ([ngModel])='favoriteIcon'> -->
                 <i class="material-icons">{{ reading?.Favorite ? 'favorite' : 'favorite_border'}}</i>
-                <!-- {{reading.Favorite}} -->
-                <!-- <i class="material-icons" >{{favoriteIcon}}</i> -->
-                <!-- </span> -->
               </a>
             </span>
         </mat-card>
@@ -86,8 +78,6 @@
     <!-- END OF SPECIFIC SECTION -->
     <footer class="android-footer mdl-mega-footer">
       <div class="mdl-mega-footer--bottom-section">
-        <!-- <a class="android-link mdl-typography--font-light" href="">Blog</a>
-        <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a> -->
         <span class="footer-copyright">Copyright 2018.</span>
       </div>
     </footer>

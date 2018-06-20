@@ -6,6 +6,7 @@ import { Reading } from '../shared/reading.model';
 import * as moment from 'moment';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm, Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { CustomErrorStateMatcher } from '../shared/errorstatematcher';
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 
@@ -26,17 +27,13 @@ export class AddReadingComponent implements OnInit {
   authorFormCtrl = new FormControl('', [
     Validators.required
   ]);
-  linkFormCtrl = new FormControl('', [
-    Validators.required
-  ]);
-  passwordFormCtrl = new FormControl('', [
-    Validators.required
-  ]);
+  linkFormCtrl = new FormControl('', );
   summaryFormCtrl = new FormControl('', [
-    Validators.required,
     Validators.maxLength(300)
   ]);
-  dateFormCtrl = new FormControl();
+
+  dateFormCtrl = new FormControl({value: ''});
+  matcher = new CustomErrorStateMatcher();
 
   constructor(
     private readingService: ReadingService,
@@ -53,26 +50,26 @@ export class AddReadingComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const offset = moment(this.dateFormCtrl.value).utcOffset();
-    // let date = new Date(moment(this.dateFormCtrl.value).format('YYYY MM DD'));
-    // const date = this.dateFormCtrl.value.toLocaleDateString();
-    // const newdate = new Date(moment(date).format('YYYY-MM-DD HH:mm:ss'));
-    this.reading = new Reading({
-      Title: this.titleFormCtrl.value,
-      Author: this.authorFormCtrl.value,
-      Link: this.linkFormCtrl.value,
-      Summary: this.summaryFormCtrl.value,
-      // Date: newdate,
-      // Rating
-      Category: this.selectedCategory
-      // Favorite
-    });
-    // console.log('offset ' + newdate);
-    this.readingService.addNewReading(this.reading).subscribe( data => {
-      this.dialogRef.close();
-      this.router.navigate(['/readings']);
-      this.openSnackBar('New reading added!', 'Success');
-    });
+    if (this.isFormValid()) {
+      console.log('Add date: ' + this.dateFormCtrl.value);
+      this.reading = new Reading({
+        Title: this.titleFormCtrl.value,
+        Author: this.authorFormCtrl.value,
+        Link: this.linkFormCtrl.value,
+        Summary: this.summaryFormCtrl.value,
+        Date: this.dateFormCtrl.value,
+        // Rating
+        Category: this.selectedCategory
+        // Favorite
+      });
+      this.readingService.addNewReading(this.reading).subscribe( data => {
+        this.dialogRef.close();
+        this.router.navigate(['/readings']);
+        this.openSnackBar('New reading added!', 'Success');
+      });
+    } else {
+      this.openSnackBar('Please enter required fields.', 'Error');
+    }
   }
 
   updateRating(updatedRating): void {
@@ -92,6 +89,13 @@ export class AddReadingComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(c => {
       this.categories = c;
     });
+  }
+
+  isFormValid(): Boolean {
+    if (this.titleFormCtrl.status === 'INVALID' || this.authorFormCtrl.value === '') {
+      return false;
+    }
+    return true;
   }
 
   openSnackBar(message: string, action: string) {

@@ -11,14 +11,21 @@
       <li class="mdl-list__item">
         <b>Title:</b>
         <mat-form-field>   
-          <input matInput [formControl]="titleFormCtrl">  
+          <input matInput [formControl]="titleFormCtrl" [errorStateMatcher]="matcher">  
+          <mat-error *ngIf="titleFormCtrl.hasError('required')" align="end">
+            Title is required
+          </mat-error>
         </mat-form-field>
+        
       </li>
       <li class="mdl-list__item">
         <b>Author:</b> 
           <mat-form-field>
-            <input matInput [formControl]="authorFormCtrl">
-          </mat-form-field>    
+            <input matInput [formControl]="authorFormCtrl" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="authorFormCtrl.hasError('required')" align="end">
+              Author is required
+            </mat-error>
+          </mat-form-field>
       </li>
       <li class="mdl-list__item">   
         <div id="rating">
@@ -29,11 +36,9 @@
       <li class="mdl-list__item">
         <b>Link:</b>
         <mat-form-field class="example-full-width">
-          <!-- <input matInput [(ngModel)] = 'reading.Link'> -->
           <input matInput [formControl]="linkFormCtrl">
         </mat-form-field>
       </li>
-      <!-- <br> -->
       <li class="mdl-list__item">
         <b>Category:</b>
         <mat-form-field class="">
@@ -46,31 +51,27 @@
       </li>
       <li class="mdl-list__item">
         <b>DateRead:</b>
-          <mat-form-field class="example-full-width">
+          <!-- <mat-form-field class="example-full-width">
             <input matInput [matDatepicker]="picker" [formControl]="dateFormCtrl" ng-model-options="{timezone: 'utc'}">
+            <input matInput [matDatepicker]="picker" [formControl]="dateFormCtrl">
               <mat-datepicker-toggle  matSuffix [for]="picker" ></mat-datepicker-toggle>
             <mat-datepicker id="DateRead" #picker ></mat-datepicker>
+          </mat-form-field> -->
+          <mat-form-field class="example-full-width">
+              <input  
+              matInput  
+              [matDatepicker]="picker" 
+              [formControl]="dateFormCtrl">
+              <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker id="DateRead" #picker></mat-datepicker>
           </mat-form-field>
       </li>
-      <!-- {{selectedCategory}} -->
-      <!-- <br> -->
-      <!-- <li class="mdl-list__item"> -->
-        <!-- <b>Summary:</b> -->
-        <!-- <mat-form-field class="example-full-width">
-          <input matInput [formControl]="summaryFormCtrl">
-        </mat-form-field> -->
         <mat-form-field id="summary" class="example-full-width">
           <b>Summary:</b>
           <textarea #message maxlength = "300" matInput cdkAutosizeTextarea="true" 
           class="summary-text-area" [formControl]="summaryFormCtrl"></textarea>
           <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
         </mat-form-field>
-        <!-- <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment"></textarea>
-        </mat-form-field> -->
-      <!-- </li> -->
-      
-      <!-- <li class="mdl-list__item"> -->
       <mat-dialog-actions>
         <button mat-button mat-raised-button class="mat-raised-button mat-primary" color="primary" 
         (click)="saveReading()">

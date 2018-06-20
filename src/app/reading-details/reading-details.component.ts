@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialog,
   MatDatepicker,
+  MatSnackBar,
   MatNativeDateModule,
   MatSelectModule,
   MatListModule  } from '@angular/material';
@@ -48,6 +49,7 @@ export class ReadingDetailsComponent implements OnInit {
     private readingService: ReadingService,
     private categoryService: CategoryService,
     private router: Router,
+    public snackBar: MatSnackBar,
     public detailsDialogRef: MatDialogRef<ReadingDetailsComponent>,
     public deleteConfirmationDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private data
@@ -90,13 +92,13 @@ export class ReadingDetailsComponent implements OnInit {
   updateReading(): void {
     this.reading.Category = this.selectedCategory;
     this.reading.DateRead = this.dateFormCtrl.value;
-    console.log('date val: ' + this.dateFormCtrl.value);
+    console.log('update date val: ' + this.dateFormCtrl.value);
     this.reading.Title = this.titleFormCtrl.value;
     this.reading.Author = this.authorFormCtrl.value;
     this.readingService.updateReading (this.reading)
     .subscribe(
-      (data: void) => console.log('${this.reading.Title} updated successfully.'),
-      (err: any) => console.log(err)
+      (data: void) => this.openSnackBar('Updated reading', 'Success'),
+      (err: any) => this.openSnackBar('Error in updating reading', 'Error')
     );
   }
 
@@ -154,6 +156,11 @@ export class ReadingDetailsComponent implements OnInit {
         this.router.navigate(['/readings']);
       }
     });
+  }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 }

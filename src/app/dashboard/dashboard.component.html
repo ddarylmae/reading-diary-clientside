@@ -1,9 +1,6 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <div class="android-header mdl-layout__header mdl-layout__header--waterfall is-casting-shadow is-compact">
       <div class="mdl-layout__header-row">
-        <!-- <span class="android-title mdl-layout-title">
-          <img class="android-logo-image" src="images/logo.png">
-        </span> -->
         <span class="mdl-layout-title">Reading Diary</span>
         <!-- Add spacer, to align navigation to the right in desktop -->
         <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -12,7 +9,6 @@
           <nav class="android-navigation mdl-navigation">
             <a class="mdl-navigation__link current-tab" routerLink="/dashboard">Dashboard</a>
             <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
-            <!-- <a class="mdl-navigation__link" (click)="logout()">Logout</a> -->
           </nav>
         </div>
       </div>
@@ -31,7 +27,6 @@
         <a class="mdl-navigation__link" routerLink="/readings">Readings</a>
         <div class="android-drawer-separator"></div>
         <a class="mdl-navigation__link drawer-link"><span (click)="logout()">Logout</span></a>
-        <!-- <span class="mdl-navigation__link">Four tips to make your switch to Android quick and easy</span> -->
       </nav>
     </div>
     <div class="android-content mdl-layout__content">
@@ -47,11 +42,6 @@
               <div class="mdl-card__title">
                  <h4 class="mdl-card__title-text">2018 Stats: {{bookCount}} books so far</h4>
               </div>
-              <!-- <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </span>
-              </div> -->
             </div>
             <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
@@ -75,11 +65,6 @@
               <div class="mdl-card__title">
                  <h4 class="mdl-card__title-text">The more you read, the more you love.</h4>
               </div>
-              <!-- <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </span>
-              </div> -->
               <div class="mdl-card__actions">
                  <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" (click)="addNewReading()">
                    Add new Reading
@@ -90,13 +75,9 @@
           </div>  <!-- END SECTION FOR DASHBOARD -->
         <!-- END OF SPECIFIC SECTION -->
       </div>
-
-      
       
       <footer class="android-footer mdl-mega-footer">
         <div class="mdl-mega-footer--bottom-section">
-          <!-- <a class="android-link mdl-typography--font-light" href="">Blog</a>
-          <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a> -->
           <span class="footer-copyright">Copyright 2018.</span>
         </div>
       </footer>

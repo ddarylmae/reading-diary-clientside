@@ -69,13 +69,6 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  // createForm() {
-  //   this.regForm = this.formBuilder.group({
-  //     email: [null, [Validators.required, Validators.email]],
-  //     username: [null, Validators.required],
-  //   });
-  // }
-
   passwordMatchValidator(g: FormGroup) {
     return g.get('pwordFormCtrl').value === g.get('confPwordFormCtrl').value
        ? null : {'mismatch': true};
@@ -94,8 +87,8 @@ export class RegistrationComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log('FORM VALUES: ' + this.usernameFormCtrl.value + ' ' + this.emailFormCtrl.value +
       ' ' + this.passwordFormCtrl.value + ' ' + this.confPassFormCtrl.value + ' ' + this.fnameFormCtrl.value +
-      ' ' + this.lnameFormCtrl.value);
-    if (this.isSignUpFormValid()) {
+      ' ' + this.lnameFormCtrl.value + ' ' + this.passwordFormCtrl.value + ' ' + this.confPassFormCtrl.value);
+    if (this.isSignUpFormValid() && this.arePasswordsSame()) {
       this.user = new User ({
         Username: this.usernameFormCtrl.value,
         Email: this.emailFormCtrl.value,
@@ -107,7 +100,7 @@ export class RegistrationComponent implements OnInit {
         result => {
           // Handle result
           this.openSnackBar('Successful Registration', 'Success');
-          // this.router.navigateByUrl('login');
+          this.router.navigateByUrl('/login');
         },
         error => {
           // console.log('handle error: ' + error);
@@ -119,6 +112,8 @@ export class RegistrationComponent implements OnInit {
         //   console.log('SUCCESSFUL result');
         // }
       );
+    } else if (this.isSignUpFormValid()) {
+      this.openSnackBar('Passwords do not match', 'Error');
     } else {
       this.openSnackBar('Please enter valid inputs', 'Error');
     }
@@ -131,6 +126,10 @@ export class RegistrationComponent implements OnInit {
         return false;
     }
     return true;
+  }
+
+  private arePasswordsSame(): boolean {
+    return (this.passwordFormCtrl.value === this.confPassFormCtrl.value) ? true : false;
   }
 
   openSnackBar(message: string, action: string) {

@@ -107,9 +107,6 @@ export class ReadingsComponent implements OnInit {
       console.log('The reading details dialog was closed');
       if (deletedReading !== '') {
         console.log('The reading array should be updated here');
-        // const index: number = this.readingList.findIndex(reading => reading.Id === deletedReading.Id);
-        // this.readingList.splice(index, 1);
-        // this.readingDeleted.Id = deletedReadingId;
         this.getReadings();
       }
     });
