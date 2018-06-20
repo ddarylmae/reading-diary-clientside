@@ -31,6 +31,11 @@ export class DashboardComponent implements OnInit {
     this.getUserInfo();
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    require('../../assets/mdl/material.js');
+  }
+
   initializeValues() {
     this.lastRead = null;
   }

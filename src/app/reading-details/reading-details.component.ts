@@ -31,7 +31,7 @@ export class ReadingDetailsComponent implements OnInit {
   categoryName: string;
   isEditButton: Boolean = true;
   deletedReading: Reading;
-  selectedCategory: number;
+  selectedCategory = 1;
   emptyRequiredFields: Boolean = false;
   titleFormCtrl = new FormControl({value: '', disabled: true}, [
     Validators.required,
@@ -43,12 +43,6 @@ export class ReadingDetailsComponent implements OnInit {
   ]);
   dateFormCtrl = new FormControl({value: '', disabled : true});
   categoryList: Category[];
-  categories = [
-    {value: 1, viewValue: 'Technical'},
-    {value: 7, viewValue: 'Personal stuff'},
-    {value: 8, viewValue: 'Christian'}
-  ];
-
 
   constructor(
     private readingService: ReadingService,
@@ -59,8 +53,10 @@ export class ReadingDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data
   ) { }
 
-  getCategories(): void {
-    this.categoryService.getAllCategories().subscribe(categories => this.categoryList = categories);
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe(c => {
+      this.categoryList = c;
+    });
   }
 
   ngOnInit() {
@@ -87,15 +83,14 @@ export class ReadingDetailsComponent implements OnInit {
   getCategory(): void {
     const id = this.reading.Category;
     if (id != null) {
-      // console.log('CATEGORY ID ' + id);
       this.categoryService.getCategoryDetails(id).subscribe(c => this.category = c);
-      // this.categoryName = this.category.Name;
     }
   }
 
   updateReading(): void {
     this.reading.Category = this.selectedCategory;
     this.reading.DateRead = this.dateFormCtrl.value;
+    console.log('date val: ' + this.dateFormCtrl.value);
     this.reading.Title = this.titleFormCtrl.value;
     this.reading.Author = this.authorFormCtrl.value;
     this.readingService.updateReading (this.reading)
@@ -162,4 +157,3 @@ export class ReadingDetailsComponent implements OnInit {
 
   }
 }
-

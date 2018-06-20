@@ -34,7 +34,7 @@ export class AddReadingComponent implements OnInit {
   ]);
   summaryFormCtrl = new FormControl('', [
     Validators.required,
-    Validators.maxLength(200)
+    Validators.maxLength(300)
   ]);
   dateFormCtrl = new FormControl();
 
@@ -73,6 +73,15 @@ export class AddReadingComponent implements OnInit {
       this.router.navigate(['/readings']);
       this.openSnackBar('New reading added!', 'Success');
     });
+  }
+
+  updateRating(updatedRating): void {
+    this.reading.Rating = updatedRating;
+    this.readingService.updateReading (this.reading)
+    .subscribe(
+      (data: void) => console.log('${this.reading.Title} updated successfully.'),
+      (err: any) => console.log(err)
+    );
   }
 
   saveReading() {

@@ -73,7 +73,8 @@
             <span class="mdl-list__item-secondary-content">
               <a class="mdl-list__item-secondary-action" (click)="toggleFavorite(reading.Id)">
                 <!-- <span ([ngModel])='favoriteIcon'> -->
-                <i class="material-icons">{{ reading.Favorite ? 'favorite' : 'favorite_border'}}</i>
+                <i class="material-icons">{{ reading?.Favorite ? 'favorite' : 'favorite_border'}}</i>
+                <!-- {{reading.Favorite}} -->
                 <!-- <i class="material-icons" >{{favoriteIcon}}</i> -->
                 <!-- </span> -->
               </a>

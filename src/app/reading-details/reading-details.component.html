@@ -47,11 +47,10 @@
     <li class="mdl-list__item">   
       <b>Category:</b>
       <mat-form-field class="example-full-width">
-        <mat-select id="Category" disabled="{{isEditButton}}" 
-        placeholder="" [(ngModel)] = "selectedCategory" name = "cat">
-          <mat-option *ngFor="let cat of categories" [value]="cat.value">
-            {{cat.viewValue}}
-          </mat-option>
+        <mat-select name="cat" disabled="{{isEditButton}}" [(ngModel)]="selectedCategory">
+          <mat-option *ngFor="let cat of categoryList" [value]="cat.Id">
+            {{cat.Name}}
+          </mat-option>          
         </mat-select>
       </mat-form-field>
     </li>
@@ -68,13 +67,13 @@
     </li>
   </ul>  
       <mat-form-field id="summary" class="example-full-width">
-          <b>Summary:</b>
-          <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
-          cdkAutosizeTextarea="true" 
-          [(ngModel)] = 'reading.Summary'
-          value="{{ reading?.Summary }}"
-          placeholder=""></textarea>
-          <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+        <b>Summary:</b>
+        <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
+        cdkAutosizeTextarea="true" 
+        [(ngModel)] = 'reading.Summary'
+        value="{{ reading?.Summary }}"
+        placeholder=""></textarea>
+        <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
       </mat-form-field>
 </mat-dialog-content>
 

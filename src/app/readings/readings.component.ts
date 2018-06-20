@@ -39,6 +39,11 @@ export class ReadingsComponent implements OnInit {
     this.getUserInfo();
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    require('../../assets/mdl/material.js');
+  }
+
   get listFilter(): string {
     return this._listFilter;
   }
@@ -59,9 +64,14 @@ export class ReadingsComponent implements OnInit {
   }
 
   toggleFavorite(id: number): void {
-    console.log('TOGGLE CALLED');
+    console.log('TOGGLE CALLED ' + id);
     this.readingService.updateFavorite(id).subscribe();
-    this.getReadings();
+    // this.getReadings();
+    this.readingList.forEach(reading => {
+      if (reading.Id === id && reading.Favorite != null) {
+        reading.Favorite = (reading.Favorite === 0) ? 1 : 0;
+      }
+    });
   }
 
   getUserInfo(): void {
@@ -108,7 +118,7 @@ export class ReadingsComponent implements OnInit {
   addNewReading() {
     // open dialog
     this.addReadingRef = this.dialog.open(AddReadingComponent, {
-      height: '450px',
+      height: '540px',
       width: '600px',
       data: {
       }

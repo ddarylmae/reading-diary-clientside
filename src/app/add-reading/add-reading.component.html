@@ -1,67 +1,87 @@
 <div mat-dialog-title>
-    <span>Add new Reading</span>
-    <button style="float:right" mat-button mat-dialog-close><i class="material-icons">clear</i></button>
-   </div>
+  <span>Add new Reading</span>
+  <button id="close" style="float:right;" mat-icon-button mat-dialog-close>
+   <mat-icon>clear</mat-icon>
+  </button>
+</div>
   
-  <mat-dialog-content>
+  <mat-dialog-content class="dialog-dim">
+    <ul class="demo-list-item mdl-list">
     <form #addReadingForm="ngForm" (ngSubmit)="onSubmit(addReadingForm)" class="">
-      <b>Title:</b>
-      <mat-form-field>   
-        <!-- <input matInput [(ngModel)]='reading.Title'> -->
-        <input matInput [formControl]="titleFormCtrl">  
-      </mat-form-field>    
-      <br>
-      <b>Author:</b> 
-        <mat-form-field>
-          <!-- <input matInput placeholder="" [(ngModel)]='reading.Author'>   -->
-          <input matInput [formControl]="authorFormCtrl">
-        </mat-form-field>    
-      <br>
-      <div id="rating">
-        <b>Rating:</b>
-        <!-- <pm-star [rating]='reading?.Rating'></pm-star> -->
-      </div>
-      <b>Link:</b>
-      <mat-form-field class="example-full-width">
-        <!-- <input matInput [(ngModel)] = 'reading.Link'> -->
-        <input matInput [formControl]="linkFormCtrl">
-      </mat-form-field>
-      <br>
-      <b>Category:</b>
-      <mat-form-field class="example-full-width">
-        <mat-select id="category-select" name="cat" [(ngModel)]="selectedCategory">
-          <mat-option *ngFor="let cat of categories" [value]="cat.Id">
-            {{cat.Name}}
-          </mat-option>          
-        </mat-select>
-      </mat-form-field>
-      {{selectedCategory}}
-      <br>
-      <b>Summary:</b>
-      <mat-form-field class="example-full-width">
-        <!-- <input matInput [(ngModel)] = 'reading.Summary'> -->
-        <input matInput [formControl]="summaryFormCtrl">
-      </mat-form-field>
-      <br>
-      <b>DateRead:</b>
-      <mat-form-field class="example-full-width">
-        <input matInput [matDatepicker]="picker" [formControl]="dateFormCtrl" ng-model-options="{timezone: 'utc'}">
-          <mat-datepicker-toggle  matSuffix [for]="picker" ></mat-datepicker-toggle>
-        <mat-datepicker id="DateRead" #picker ></mat-datepicker>
-    </mat-form-field>
-    {{dateFormCtrl?.value | json}}
-      <br>
-      <b>Favorite:</b> 
+      <li class="mdl-list__item">
+        <b>Title:</b>
+        <mat-form-field>   
+          <!-- <input matInput [(ngModel)]='reading.Title'> -->
+          <input matInput [formControl]="titleFormCtrl">  
+        </mat-form-field>
+      </li>
+      <!-- <br> -->
+      <li class="mdl-list__item">
+        <b>Author:</b> 
+          <mat-form-field>
+            <!-- <input matInput placeholder="" [(ngModel)]='reading.Author'>   -->
+            <input matInput [formControl]="authorFormCtrl">
+          </mat-form-field>    
+        <!-- <br> -->
+      </li>
+      <li class="mdl-list__item">   
+        <div id="rating">
+          <b>Rating:</b>
+          <pm-star [rating]='reading?.Rating'></pm-star>
+        </div>
+      </li>
+      <li class="mdl-list__item">
+        <b>Link:</b>
+        <mat-form-field class="example-full-width">
+          <!-- <input matInput [(ngModel)] = 'reading.Link'> -->
+          <input matInput [formControl]="linkFormCtrl">
+        </mat-form-field>
+      </li>
+      <!-- <br> -->
+      <li class="mdl-list__item">
+        <b>Category:</b>
+        <mat-form-field class="">
+          <mat-select id="category-select" name="cat" [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let cat of categories" [value]="cat.Id">
+              {{cat.Name}}
+            </mat-option>          
+          </mat-select>
+        </mat-form-field>
+      </li>
+      <li class="mdl-list__item">
+        <b>DateRead:</b>
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" [formControl]="dateFormCtrl" ng-model-options="{timezone: 'utc'}">
+              <mat-datepicker-toggle  matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker id="DateRead" #picker ></mat-datepicker>
+          </mat-form-field>
+      </li>
+      <!-- {{selectedCategory}} -->
+      <!-- <br> -->
+      <li class="mdl-list__item">
+        <b>Summary:</b>
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput [formControl]="summaryFormCtrl">
+        </mat-form-field> -->
+        <mat-form-field id="summary" class="example-full-width">
+            <b>Summary:</b>
+            <textarea #message maxlength = "300" matInput cdkAutosizeTextarea="true" 
+            [formControl]="summaryFormCtrl"></textarea>
+            <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+          </mat-form-field>
+      </li>
+      
+      <!-- <li class="mdl-list__item"> -->
       <mat-dialog-actions>
-          <button mat-button mat-raised-button class="mat-raised-button mat-primary" color="primary" 
-          (click)="saveReading()">
-            <i class="material-icons">save</i> Save</button>
-          <button mat-button mat-raised-button class="mat-raised-button mat-accent" type="submit" color="accent" >
-            <i class="material-icons">cancel</i> Cancel
-          </button>  
-        </mat-dialog-actions>
-    </form>
-    
+        <button mat-button mat-raised-button class="mat-raised-button mat-primary" color="primary" 
+        (click)="saveReading()">
+          <i class="material-icons">save</i> Save</button>
+        <button mat-button mat-raised-button class="mat-raised-button mat-accent" type="submit" color="accent" >
+          <i class="material-icons">cancel</i> Cancel
+        </button>  
+      </mat-dialog-actions>
+  </form>
+  </ul>
   </mat-dialog-content>
   
  
