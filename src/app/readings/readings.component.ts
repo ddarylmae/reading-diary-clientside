@@ -96,7 +96,7 @@ export class ReadingsComponent implements OnInit {
     this.readingDetailsRef = this.dialog.open(ReadingDetailsComponent, {
       // disableClose: true,
       // hasBackdrop: false,
-      height: '540px',
+      height: '520px',
       width: '600px',
       data: {
         reading: currentReading
@@ -118,7 +118,7 @@ export class ReadingsComponent implements OnInit {
   addNewReading() {
     // open dialog
     this.addReadingRef = this.dialog.open(AddReadingComponent, {
-      height: '540px',
+      height: '520px',
       width: '600px',
       data: {
       }

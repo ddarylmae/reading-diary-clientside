@@ -66,15 +66,15 @@
       </mat-form-field>    
     </li>
   </ul>  
-      <mat-form-field id="summary" class="example-full-width">
-        <b>Summary:</b>
-        <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
-        cdkAutosizeTextarea="true" 
-        [(ngModel)] = 'reading.Summary'
-        value="{{ reading?.Summary }}"
-        placeholder=""></textarea>
-        <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
-      </mat-form-field>
+    <mat-form-field id="summary" class="example-full-width">
+      <b>Summary:</b>
+      <textarea #message maxlength = "300" matInput disabled="{{isEditButton}}" 
+      class="summary-text-area" cdkAutosizeTextarea="true" 
+      [(ngModel)] = 'reading.Summary'
+      value="{{ reading?.Summary }}"
+      placeholder=""></textarea>
+      <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+    </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>

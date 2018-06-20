@@ -6,23 +6,19 @@
 </div>
   
   <mat-dialog-content class="dialog-dim">
-    <ul class="demo-list-item mdl-list">
     <form #addReadingForm="ngForm" (ngSubmit)="onSubmit(addReadingForm)" class="">
+      <ul class="demo-list-item mdl-list">
       <li class="mdl-list__item">
         <b>Title:</b>
         <mat-form-field>   
-          <!-- <input matInput [(ngModel)]='reading.Title'> -->
           <input matInput [formControl]="titleFormCtrl">  
         </mat-form-field>
       </li>
-      <!-- <br> -->
       <li class="mdl-list__item">
         <b>Author:</b> 
           <mat-form-field>
-            <!-- <input matInput placeholder="" [(ngModel)]='reading.Author'>   -->
             <input matInput [formControl]="authorFormCtrl">
           </mat-form-field>    
-        <!-- <br> -->
       </li>
       <li class="mdl-list__item">   
         <div id="rating">
@@ -58,18 +54,21 @@
       </li>
       <!-- {{selectedCategory}} -->
       <!-- <br> -->
-      <li class="mdl-list__item">
-        <b>Summary:</b>
+      <!-- <li class="mdl-list__item"> -->
+        <!-- <b>Summary:</b> -->
         <!-- <mat-form-field class="example-full-width">
           <input matInput [formControl]="summaryFormCtrl">
         </mat-form-field> -->
         <mat-form-field id="summary" class="example-full-width">
-            <b>Summary:</b>
-            <textarea #message maxlength = "300" matInput cdkAutosizeTextarea="true" 
-            [formControl]="summaryFormCtrl"></textarea>
-            <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
-          </mat-form-field>
-      </li>
+          <b>Summary:</b>
+          <textarea #message maxlength = "300" matInput cdkAutosizeTextarea="true" 
+          class="summary-text-area" [formControl]="summaryFormCtrl"></textarea>
+          <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field> -->
+      <!-- </li> -->
       
       <!-- <li class="mdl-list__item"> -->
       <mat-dialog-actions>
@@ -80,8 +79,8 @@
           <i class="material-icons">cancel</i> Cancel
         </button>  
       </mat-dialog-actions>
+    </ul>
   </form>
-  </ul>
   </mat-dialog-content>
   
  

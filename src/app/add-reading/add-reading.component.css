@@ -1,3 +1,7 @@
+.summary-text-area {
+  height: 80px;
+}
+
 .dialog-dim {
   overflow: unset;
   max-height: 0;
