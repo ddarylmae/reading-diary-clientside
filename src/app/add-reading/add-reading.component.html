@@ -16,7 +16,6 @@
             Title is required
           </mat-error>
         </mat-form-field>
-        
       </li>
       <li class="mdl-list__item">
         <b>Author:</b> 
@@ -30,7 +29,8 @@
       <li class="mdl-list__item">   
         <div id="rating">
           <b>Rating:</b>
-          <pm-star [rating]='reading?.Rating'></pm-star>
+          <pm-star (ratingUpdated)="updateRating($event)" 
+          [rating]='ratingVal'></pm-star>
         </div>
       </li>
       <li class="mdl-list__item">
@@ -58,13 +58,13 @@
             <mat-datepicker id="DateRead" #picker ></mat-datepicker>
           </mat-form-field> -->
           <mat-form-field class="example-full-width">
-              <input  
-              matInput  
-              [matDatepicker]="picker" 
-              [formControl]="dateFormCtrl">
-              <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker id="DateRead" #picker></mat-datepicker>
-          </mat-form-field>
+            <input  
+            matInput  
+            [matDatepicker]="picker" 
+            [formControl]="dateFormCtrl">
+            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker id="DateRead" #picker></mat-datepicker>
+        </mat-form-field>
       </li>
         <mat-form-field id="summary" class="example-full-width">
           <b>Summary:</b>

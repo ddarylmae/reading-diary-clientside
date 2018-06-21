@@ -32,6 +32,7 @@ export class AddReadingComponent implements OnInit {
     Validators.maxLength(300)
   ]);
 
+  ratingVal = 1;
   dateFormCtrl = new FormControl({value: ''});
   matcher = new CustomErrorStateMatcher();
 
@@ -43,7 +44,8 @@ export class AddReadingComponent implements OnInit {
     private categoryService: CategoryService,
     public dialogRef: MatDialogRef<AddReadingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
     this.getCategories();
@@ -51,16 +53,14 @@ export class AddReadingComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (this.isFormValid()) {
-      console.log('Add date: ' + this.dateFormCtrl.value);
       this.reading = new Reading({
         Title: this.titleFormCtrl.value,
         Author: this.authorFormCtrl.value,
         Link: this.linkFormCtrl.value,
         Summary: this.summaryFormCtrl.value,
-        Date: this.dateFormCtrl.value,
-        // Rating
+        DateRead: this.dateFormCtrl.value,
+        Rating: this.ratingVal,
         Category: this.selectedCategory
-        // Favorite
       });
       this.readingService.addNewReading(this.reading).subscribe( data => {
         this.dialogRef.close();
@@ -73,12 +73,7 @@ export class AddReadingComponent implements OnInit {
   }
 
   updateRating(updatedRating): void {
-    this.reading.Rating = updatedRating;
-    this.readingService.updateReading (this.reading)
-    .subscribe(
-      (data: void) => console.log('${this.reading.Title} updated successfully.'),
-      (err: any) => console.log(err)
-    );
+    this.ratingVal = updatedRating;
   }
 
   saveReading() {
